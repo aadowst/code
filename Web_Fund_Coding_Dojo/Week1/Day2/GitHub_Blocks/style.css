@@ -1,0 +1,47 @@
+h1{
+    color: rgb(42, 78, 107);
+    font-size: 40px;
+    text-align: center;
+    padding-top: 15px;
+    margin: 0px;
+
+}
+img{
+    height: 175px;
+}
+.container{
+    background-color: whitesmoke;
+    width: 650px;
+}
+.row1{
+    width: 600px;
+    background-color: skyblue;
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+    margin: 0px 10px 10px 10px;
+}
+.row2{
+    width: 600px;
+    background-color: rgb(222, 135, 164);
+    display: flex;
+    padding: 15px;
+    justify-content: space-around;
+    margin: 10px;
+}
+.row3{
+    width: 600px;
+    background-color: white;
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+    margin: 10px;
+}
+.row4{
+    text-align: center;
+    color: rgb(42, 78, 107);
+    padding: 10px;
+}
+a{
+    color: lightskyblue;
+}
