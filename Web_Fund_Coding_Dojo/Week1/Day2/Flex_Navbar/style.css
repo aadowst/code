@@ -1,0 +1,38 @@
+body{
+    margin: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+.nav{
+    width: auto;
+    background-color: rgb(51, 57, 63);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: azure;
+    padding: 0px 10px
+
+}
+.nav-title{
+    padding-left: 15px;
+    margin: 0px;
+}
+.nav-links{
+    display: flex;
+    justify-content: right;
+    width: auto;
+}
+li{
+    color:rgba(51, 57, 63, 0);
+
+}
+a {
+    color: azure;
+    padding: 0px 15px;
+    text-decoration: none;
+}
+.btn{
+    background-color: rgb(17, 158, 190);
+    color: azure;
+    box-shadow: 3px 3px black, -2px -2px black;
+    padding: 0px 10px;
+}
