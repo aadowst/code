@@ -1,0 +1,77 @@
+/* CSS reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+  /* Fixed width container class that will "auto-center" itself */
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* Favorite Button from Button UP  */
+.btn {
+    color: #1CA0A1;
+    text-align: center;
+    width: 100px;
+    padding: 5px 15px;
+    border-style: solid;
+    border-color: #1CA0A1;
+    border-radius: 20px;
+    margin: 20px 40px;
+}
+/* .row and .col classes from FLEX-ible Columns */
+.row{
+    display: flex;
+}
+.col, .col-2, .col-3{
+    flex:1;
+    color:aliceblue;
+    background-color: rgb(85, 147, 168);
+    margin: 10px;
+    padding: 10px;
+}
+.col-2{
+    flex:2;
+}
+.col-3{
+    flex:3;
+}
+
+/* .navbar from Flexible Navbar  */
+.nav{
+    width: auto;
+    background-color: rgb(51, 57, 63);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: azure;
+    padding: 0px 10px
+
+}
+.nav-title{
+    padding-left: 15px;
+    margin: 0px;
+}
+.nav-links{
+    display: flex;
+    justify-content: right;
+    width: auto;
+}
+li{
+    color:rgba(51, 57, 63, 0);
+
+}
+a {
+    color: azure;
+    padding: 0px 15px;
+    text-decoration: none;
+}
+.btn{
+    background-color: rgb(17, 158, 190);
+    color: azure;
+    box-shadow: 3px 3px black, -2px -2px black;
+    padding: 0px 10px;
+}
