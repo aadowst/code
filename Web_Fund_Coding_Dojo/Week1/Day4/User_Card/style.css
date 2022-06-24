@@ -22,7 +22,7 @@
     height: 0px;
     background-color: white;
 }
-.circle img{
+.circle img {
     height: 80px;
     background-color: white;
     border: 1px solid gray;
@@ -30,6 +30,7 @@
     padding: 4px;
     position: relative;
     top: -40px;
+    /* try to avoid negative value next time. Maybe add it to the top blue band */
     left: 40px;
 }
 .location{

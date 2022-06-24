@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    
+    <div class="nav">
+        <div class="left">
+            <h1>Profile</h1>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#" class="active">My Profile</a></li>
+                <li><a href="#">Find Connections</a></li>
+            </ul>
+            
+        </div>
+        <button class="btn">Sign Out</button>
+        </div>
+
+
+
+    <div class="main"> <!--has two components:  profile and connections-->
+
+        <div class="profile"> <!--Has two components: user_card and resume-->
+
+            <div class="user_card"> <!--start usercard-->
+            
+                <div class="card_top">
+                    <img class="circle" src="/Week1/Day4/User_Card/Imgs/user-circle.png" alt="profile in circle">
+                </div>
+
+                <div class="card_main"> <!-- mainbody of card -->
+
+                    <h1 class="user_name">Jane Doe</h1>
+
+                    <div class="location">
+                        <img src="/Week1/Day4/User_Card/Imgs/map-marker.png" alt="map marker icon">
+                        <h2>Seattle</h2>
+                    </div>
+        
+                    <div class="attributes">
+                        <b>
+                        <p>Developer | Engineer | Problem Solver</p>
+                        <p>Master of shadows and the Internet!</p>
+                        </b>
+                    </div>
+        
+                    <div class="edit_profile">
+                        <img src="/Week1/Day4/User_Card/Imgs/gear.png" alt="gear icon">
+                        <a href="#">edit profile</a>
+                    </div>
+                </div>
+            </div> <!--end usercard-->
+
+            <div class="resume"> <!--start resume-->
+                <div class="resume_top">
+                    <h4>Education</h4>
+                </div>
+                <div class="resume_body">
+                    <h3>Coding Dojo - Full Stack Bootcamp</h3>
+                    <h4 class="dates">Dec 2019 - Mar 2020</h4>
+                    <p>Triple black belt in Python, MERN, and C#...</p>
+                </div>
+            </div> <!--end resume-->
+
+        </div>
+
+        <div class="connections"> <!--has two components:  requests and my_connections-->
+            <div class="requests">
+
+                <div class="requests_top">
+                    <p class="request_number">2</p>
+                    <p>Connection Requests</p>
+                </div>
+
+                <div class="requests_body">
+                    <div class="row"> <!--ROW1 why was this necessary?-->
+                        <div class="request_user">
+                            <img class="request_user_photo" src="/Week1/Day4/Profile_Page/Imgs/todd-s.jpg" alt="Photo of Requesting User">
+                            <p>Todd E</p>
+                        </div>
+                        <div class="request_buttons">
+                            <img src="/Week1/Day4/Profile_Page/Imgs/accept-circle.png" alt="checkmark">
+                            <img src="/Week1/Day4/Profile_Page/Imgs/close-circle.png" alt="crossout circle">
+                        </div>
+                    </div>
+                    <div class="row"> <!--ROW2-->
+                        <div class="request_user">
+                            <img class="request_user_photo" src="/Week1/Day4/Profile_Page/Imgs/phil-s.jpg" alt="Photo of Requesting User">
+                            <p>Phil K</p>
+                        </div>
+                        <div class="request_buttons">
+                            <img src="/Week1/Day4/Profile_Page/Imgs/accept-circle.png" alt="checkmark">
+                            <img src="/Week1/Day4/Profile_Page/Imgs/close-circle.png" alt="crossout circle">
+                        </div>
+                    </div>
+                </div>  <!-- end requests body  -->
+            </div> <!--end requests-->
+
+            <div class="my_connections">
+                <div class="connections_top">
+                    <p class="connection_number">500+</p>
+                    <p>Your Connections</p>
+                </div>
+
+                <div class="connections_body">
+                    <div class="row"> <!--ROW1-->
+                            <div class="connection_user">
+                                <img src="/Week1/Day4/Profile_Page/Imgs/adrien-s.jpg" alt="Photo of Requesting User">
+                                <p>Adrien D</p>
+                            </div>
+                    </div> <!--end ROW1-->
+                    <div class="row"> <!--ROW2-->
+                        <div class="connection_user">
+                            <img src="/Week1/Day4/Profile_Page/Imgs/anne-s.jpg" alt="Photo of Requesting User">
+                            <p>Anne J</p>
+                        </div>
+                    </div> <!--end ROW2-->
+                    <div class="row"> <!--ROW3-->
+                        <div class="connection_user">
+                            <img src="/Week1/Day4/Profile_Page/Imgs/alayne-s.jpg" alt="Photo of Requesting User">
+                            <p>Alayne T</p>
+                        </div>
+                </div> <!--end ROW3-->
+                <div class="row"> <!--ROW4-->
+                    <div class="connection_user">
+                        <img src="/Week1/Day4/Profile_Page/Imgs/arry-s.jpg" alt="Photo of Requesting User">
+                        <p>Arry Y</p>
+                    </div>
+                </div> <!--end ROW4-->
+                </div>  <!-- end connections body  -->
+                <div class="connections_footer">
+                    <a href="#">View More</a>
+                </div>
+            </div> <!--my connections-->
+
+        </div><!-- end connections -->
+
+
+
+    </div>
+
+
+
+
+</body>
+</html>

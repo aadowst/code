@@ -1,0 +1,197 @@
+* {
+
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    }
+    
+body{
+        font-family: 'Roboto', sans-serif;
+}    
+/* Start top Nav section */
+.nav{
+    width: auto;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: azure;
+    padding: 0px 100px /* .nav padding = .main padding + .profile margin */
+    
+}
+.nav .left{
+    display: flex;
+    align-content: center;
+    list-style: none;
+}
+.nav-links{
+    display: flex;
+    justify-content: right;
+    width: auto;
+    list-style: none;
+    align-self: center;
+}
+.nav a{
+    color: azure;
+    padding: 0px 15px;
+    text-decoration: none;
+}
+.btn{
+    background-color: rgb(17, 158, 190);
+    color: azure;
+    box-shadow: 3px 3px black, -2px -2px black;
+    padding: 0px 10px;
+}
+/* end top Nav and begin Main section */
+.main{
+    background-color: white;
+    padding: 0px 80px;
+    display: flex;
+    /* margin: 20px */
+}
+.profile{ 
+    flex: 2;
+    margin-right: 20px;
+
+
+}
+/* start user card section */
+.user_card{
+    margin-top: 20px;
+    background-color: white;
+    /* border: 2px solid gray */
+}
+.card_top {
+    background-color: rgb(23, 162, 184); 
+    height: 80px;
+}
+.circle{
+    height: 80px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 50%;
+    padding: 4px;
+    position: relative;
+    top: 30px;
+    left: 40px;
+}
+.card_main{
+    padding: 25px;
+    padding-top: 40px;
+    border: 2px solid gray;
+    border-top: 0px;
+}
+.location{
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.location img{
+    height: 20px;
+    padding-right: 15px;
+}
+
+.edit_profile{
+    display: flex;
+    padding-top: 15px;
+
+}
+a{
+    color: RGB(8, 83, 148);
+    font-weight: bolder;
+}
+.edit_profile img{
+    height: 20px;
+    padding-right:8px;
+}
+/* start resume section */
+.resume{
+    background-color: white;
+    margin-top: 20px;
+
+}
+.resume_top{
+    padding: 8px 0px 8px 25px;  /*left padding is same as padding in card_main */
+    background-color: RGB(51, 51, 51);
+    color: RGB(254, 254, 254);
+}
+.resume_body{
+    padding: 8px 0px 8px 25px; /* same as in resume top and user card */
+    border: 2px solid gray;
+}
+.resume_body h3, .resume_body h4{
+    margin: 8px 0px;
+}
+.resume_body .dates {
+    color: RGB(102, 102, 102);
+}
+
+/* end profile container on the left  */
+
+/* start of connections container on the right  */
+.connections{
+    flex: 1;
+}
+.requests{
+    background-color: white;
+    margin-top: 20px;
+    border: 2px solid gray
+}
+.requests_top, .connections_top{
+    display: flex;
+    background-color: RGB(51, 51, 51);
+    color: RGB(254, 254, 254);
+    padding: 12px 0px 12px 8px;
+}
+.request_number{
+    background-color: RGB(153, 153, 153);
+    border-radius: 50%;
+    text-align: center;
+    color: black;
+    width: 25px;
+    margin-right:8px;
+}
+.connection_number{
+    background-color: RGB(153, 153, 153);
+    border-radius: 50%;
+    text-align: center;
+    color: black;
+    width: 45px;
+    margin-right:8px;
+}
+.requests_body *, .connections_body *{
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+.requests_body img, .connections_body img{
+    width: 30px;
+    padding: 10px 4px 8px 8px;
+}
+.request_user, .connection_user{
+    display: flex;
+    align-items: center;
+}
+.request_user p, .connection_user p{
+    margin-left: 8px;
+}
+.request_buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.my_connections{
+    background-color: white;
+    margin-top: 20px;
+
+}
+.connections_body{
+    border: 2px solid gray;
+}
+.connections_footer{
+    border: 2px solid gray;
+    border-top: 0px;
+    padding: 8px 4px 8px 8px;
+}
