@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojonary</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="page_header">
+            <h1><b>Dojonary</b></h1>
+            <form action="http://www.wikipedia.org/search-redirect.php" method="get"><!-- Get this to work! -->
+            <input type="hidden" name="sitesearch" value="http://www.wikipedia.org">
+            <input type="text" name="search" id="search" value=" Search"  style="height:30px; font-size:13pt; width: 300px;">
+            </form>
+            <div class="login_button" onclick="logOut(this)">Login</div>
+        </div><!-- end page header  -->
+
+        <div class="def" id="def1">
+            <div class="def_left">
+                <h1><b>ninja</b></h1>
+                <h2><em>noun</em></h2>
+                <h3>Plural: <em>ninjas</em></h3>
+                <div class="likes_button" onClick="wasLiked(this)">13 likes</div>
+            </div>
+            <div class="def_right">
+                <h2>A practitioner skilled in the <a href="#">Japanese</a> art of <a href="#">ninjitsu</a></h2>
+            </div>
+
+        </div><!-- end #def1 -->
+
+
+        <div class="def" id="def2">
+            <div class="def_left">
+            <h1><b>ninja</b></h1>
+            <h2><em>noun</em></h2>
+            <h3>Plural: <em>ninjas</em></h3>
+            <div class="likes_button" onClick="wasLiked(this)">37 likes</div>
+        </div>
+        <div class="def_right">
+            <h2>A <a href="#">programmer</a> who breaks down problems with <a href="#">zen</a>-like focus</h2>
+        </div>
+
+        </div><!-- end #def2 -->
+
+        <div class="add_def">
+            <h2>Dojonary is defined by <b>YOU</b></h2>
+            <div class="add_definition_button" onClick="remove(this)">Add Definition</div>
+        </div><!-- end add def -->
+
+    </div><!-- end container -->
+
+    <script src="script.js"></script>
+</body>
+</html>
