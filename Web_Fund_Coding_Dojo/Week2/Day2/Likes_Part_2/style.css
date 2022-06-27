@@ -1,0 +1,113 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    color: RGB(35, 76, 111);
+}
+.container {
+    margin: 0px 200px 0px 200px;
+    width: 600px;
+    height: 800px;
+    background-color: white;
+
+
+
+}
+.containerHeader{
+    flex: 3;
+    text-align: left;
+}
+.containerHeader h1{
+    font-weight: lighter;
+    padding: 10px;
+
+}
+#network{
+    padding-left: 20px;
+    background-color: black;
+    color: white;
+    font-weight: lighter;
+}
+
+#yourFeed{
+    text-align: center;
+}
+
+.main{
+    display: flex;
+}
+.leftColumn{
+    flex: 1;
+}
+
+.avatarBox{
+    border: 4px solid black;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.avatarBox img{
+    height: 80px;
+    position: relative;
+    top: 10px;
+    margin-bottom: 20px;
+}
+
+.avatarBox h2{
+    margin: 20px 0px 20px 0px;
+}
+
+.rightColumn{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+.friendBox{
+    border: 4px solid black;
+    margin-top: 10px;
+    padding: 15px;
+    position: relative;
+    /* top: 50px;
+    left: 250px;
+    height: 150px; */
+    width: 375px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+/* #User1.friendBox{
+    top: 50px;
+    left: 250px;
+}
+
+#User2.friendBox{
+    top: 250px;
+    left: 250px;
+} */
+
+.friendHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 15px;
+}
+
+.likeButton{
+    background-color: RGB(254, 217, 102);
+    padding: 5px;
+    width: 60px;
+    text-align: center;
+    font-size: 16pt;
+    font-weight: bold;
+    box-shadow: 2px 2px 1px 4px black;
+}

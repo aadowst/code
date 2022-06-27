@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+    <div class="containerHeader">
+        <h1 id="network">Network</h1>
+        <h1 id="yourFeed">Your Feed</h1>
+
+    </div> <!-- end containerHeader -->
+    <div class="main">
+
+
+    <div class="leftColumn">
+        <div class="avatarBox">
+            <img src="/Week2/Day2/Likes_Part_2/user-circle.png" alt="profile picture">
+            <br>
+            <a href="#">Add an avatar</a>
+            <h2>James Doe</h2>
+        </div>
+        
+    </div>
+    <div class="rightColumn">
+
+
+        <div class="friendBox" id="User0">
+
+            <div class="friendHeader">
+                <h2 class="friendName">Neil M</h2>
+                <h2 class="likeCount" id="0">0 like(s)</h2>
+                <div class="likeButton" onclick="addLike(this)" id="0">
+                    Like
+                </div>
+            </div><!-- end friendHeader -->
+            <div class="statusUpdate">
+                <h3>I just set up this new discord bot, let me know what you all think. <a href="#">link</a></h3>
+            </div>
+        </div> <!-- end friendBox  -->
+
+        <div class="friendBox" id="User1">
+
+            <div class="friendHeader">
+                <h2 class="friendName">Nichole K</h2>
+                <h2 class="likeCount" id="1">0 like(s)</h2>
+                <div class="likeButton" onclick="addLike(this)" id="1">
+                    Like
+                </div>
+            </div><!-- end friendHeader -->
+            <div class="statusUpdate">
+                <h3>Just finished my <a href="#">next comic</a>, check it out.</h3>
+            </div>
+        </div> <!-- end friendBox  -->
+
+        <div class="friendBox" id="User2">
+        <div class="friendHeader">
+            <h2 class="friendName">Jim R</h2>
+            <h2 class="likeCount" id="2">0 like(s)</h2>
+            <div class="likeButton" onclick="addLike(this)" id="2">
+                Like
+            </div>
+        </div><!-- end friendHeader -->
+        <div class="statusUpdate">
+            <h3>I can't stop listenig to the <a href="#">new album</a>. Who else is liking it?</h3>
+        </div>
+    </div> <!-- end friendBox  -->
+    </div><!-- end rightColumn -->
+    </div><!-- end of main -->
+    </div><!-- end container  -->
+<script src="script.js"></script>
+</body>
+</html>
