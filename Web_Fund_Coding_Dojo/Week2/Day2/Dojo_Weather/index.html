@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="nav-container">
+        <div class="nav-bar">
+            <div class="nav-title">
+                <h1>DojoWeather</h1>
+            </div>
+
+                <ul class="nav-cities">
+
+                    <li><h2  onclick="alert('Loading weather report...')">Burbank</h2></li>
+                    <li><h2  onclick="alert('Loading weather report...')">Chicago</h2></li>
+                    <li><h2  onclick="alert('Loading weather report...')">Dallas</h2></li>
+
+                </ul>
+
+        </div>
+    </div>
+
+    <div class="body-container">
+        <div class="body-envelope">
+
+            <div class="body-header">
+                <div class="current-city">
+                    <h1>San Jose</h1>
+                </div>
+                <div class="temperature-units">
+                    <h3>show temperature in</h3> <select name="Unit-Change" onchange="convertTemp(this)">
+                        <option value="F">°F</option>
+                        <option value="C">°C</option>
+                    </select> 
+                </div>
+
+            </div>
+            <div class="hr">
+                <hr>
+            </div>
+            <div class="body-main">
+
+                <div class="day-column">
+                    <h2>Today</h2>
+                    <img src="/Week2/Day2/Dojo_Weather/assets/some_rain.png" alt="weather icon">
+                    <h3>some rain</h3>
+                    <h2><span class="high-temp">75°</span><span class="low-temp">65°</span></h2>
+                </div>
+
+                <div class="day-column">
+                    <h2>Tomorrow</h2>
+                    <img src="/Week2/Day2/Dojo_Weather/assets/some_sun.png" alt="weather icon">
+                    <h3>some sun</h3>
+                    <h2><span class="high-temp">80°</span><span class="low-temp">66°</span></h2>
+                </div>
+
+                <div class="day-column">
+                    <h2>Friday</h2>
+                    <img src="/Week2/Day2/Dojo_Weather/assets/some_clouds.png" alt="weather icon">
+                    <h3>some clouds</h3>
+                    <h2><span class="high-temp">69°</span><span class="low-temp">61°</span></h2>
+                </div>
+
+                <div class="day-column">
+                    <h2>Saturday</h2>
+                    <img src="/Week2/Day2/Dojo_Weather/assets/some_sun.png" alt="weather icon">
+                    <h3>some sun</h3>
+                    <h2><span class="high-temp">78°</span><span class="low-temp">70°</span></h2>
+                </div>
+
+            </div>
+            <div class="body-footer" id="body-footer">
+                <img src="/Week2/Day2/Dojo_Weather/assets/cookie.png" alt="cookie">
+                <div class="footer-text">
+                    <h2>Stop! Cookie time</h2>
+                    <h3>We use cookies (sadly not the edible ones) to personalize content and ads, to provide social media features and to analyse our traffic. <a href="#">Read more...</a></h3>
+                </div>
+                <button onclick="accept('body-footer')">I Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
