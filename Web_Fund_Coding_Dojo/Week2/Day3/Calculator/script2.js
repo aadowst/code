@@ -18,7 +18,6 @@ function calculate(){
     var temp;
     if(numbersEntered.length <= 0){
         return;
-    
     }else if (operatorType == "+"){
         temp = numbersEntered[0]+numbersEntered[1];
         numbersEntered =[temp];
@@ -67,7 +66,6 @@ function press(digit){
         numberString = String(digit);
         numbersEntered.push(digit);
         display.innerText = digit;
-        
     }else if (numbersEntered.length == 1 && calculationPerformed ==true && operatorType==""){
         clearCalculator();
         press(digit);

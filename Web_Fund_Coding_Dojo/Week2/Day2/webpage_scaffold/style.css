@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#full.nav{
+    display: flex;
+    width: auto;
+    height: 100px;
+    justify-content: center;
+    background-color: aquamarine;
+}
+
+.nav .center{
+    height:60px;
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
+.center{
+    margin: auto;
+    width: 100%;
+    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main{
+    height: 500px;
+}
+
+.left, .right {
+    background-color: green;
+    width: 200px;
+    z-index: -1;
+}
+
+.left{
+    margin-left: 50px;
+}
+
+.right{
+    margin-right: 50px;
+}
+
+.column{
+    flex:1;
+    outline: 3px red solid;
+    display: flex;
+    align-self: flex-start;
+    /* overrides the align-items in the .center class */
+}

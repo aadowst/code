@@ -1,0 +1,137 @@
+<!--Todo:  
+1. add the onigiri to dictionary and make it 5 points (not too bad)
+2. create a random world (hard)
+3. creat ghosts that chase ninjaman (extremely hard)
+
+	-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>NinjaMan</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.row{
+			line-height: 0;
+		}
+		.wall {
+			background-color: blue;
+			height:  40px;
+			width: 40px;
+			display: inline-block;
+		}
+		.sushi {
+			background-color: black ;
+			height:  40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('sushi.png');
+			background-size: contain;
+		}
+		.blank{
+			background-color: black;
+			height:  40px;
+			width: 40px;
+			display: inline-block;
+		}
+			#NinjaMan {
+			background-color: black ;
+			height:  40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('ninja.gif');
+			background-size: contain;
+			position: absolute;
+			left: 40px;
+			top:  40px;
+		}
+	</style>
+</head>
+<body>
+<div id='world'>
+</div>
+<div id='NinjaMan'></div>
+</body>
+<script type="text/javascript">
+	var world = [
+		[1,1,1,1,1],
+		[1,0,2,2,1],
+		[1,2,1,2,1],
+		[1,2,2,2,1],
+		[1,0,2,2,1],
+		[1,2,1,2,1],
+		[1,2,2,2,1],
+		[1,0,2,2,1],
+		[1,2,1,2,1],
+		[1,2,2,2,1],
+		[1,1,1,1,1],
+	];
+	var worldDictionary = {
+		0: 'blank',
+		1: 'wall',
+		2: 'sushi'
+	}
+	function drawWorld(){
+		output = "";
+		for (var row= 0; row < world.length; row++){
+			output+="<div class = 'row'>"
+			for(var x=0; x<world[row].length; x++){
+				output += "<div class = '" + worldDictionary[world[row][x]] +"'></div>"
+			
+			}
+			output += "</div>"
+		}
+		document.getElementById('world').innerHTML = output;
+	}
+	drawWorld();
+
+	var ninjaman = {
+		x: 1,
+		y:5
+	}
+
+	function drawNinjman(){
+		document.getElementById('NinjaMan').style.top = ninjaman.y * 40 + 'px'
+		document.getElementById('NinjaMan').style.left = ninjaman.x * 40 + 'px'
+	}
+	drawNinjman();
+
+	var score = 0;
+
+	document.onkeydown = function(e){
+		if(e.keyCode ==37){ //left
+			if(world[ninjaman.y][ninjaman.x-1] !=1){ //if the world position at y and where ninjaman is going (hence -1 for a left movement) on x is 1, not true, so doesn't proceed
+				ninjaman.x--;	
+			}
+		
+		}
+		if(e.keyCode ==39){ //right
+			if(world[ninjaman.y][ninjaman.x+1]!=1){
+			ninjaman.x++;
+			}
+		}
+		if(e.keyCode ==38){ //up
+			if(world[ninjaman.y-1][ninjaman.x] != 1){
+				ninjaman.y--;
+			}
+		}
+		if(e.keyCode ==40){ //down
+			if(world[ninjaman.y+1][ninjaman.x] !=1){
+			ninjaman.y++;
+			}
+		}
+		
+		if(world[ninjaman.y][ninjaman.x] ==2){
+			score = score + 10;
+			world[ninjaman.y][ninjaman.x] = 0;
+		}
+		drawNinjman()
+		drawWorld()
+		console.log(score);
+	}
+</script>
+</html>
