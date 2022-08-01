@@ -26,15 +26,13 @@ function binaryStringExpansion(str, arr = []) {
       console.log("index is",i, strA, strB)
       binaryStringExpansion(strA, arr)
       binaryStringExpansion(strB, arr)
+      return arr
     }
   }
-  if (!str.includes("?")){
-    console.log("pushing:  ", str)
-    arr.push(str)
-  }
+  arr.push(str)
   return arr
 }
-console.log(binaryStringExpansion(two_str1))
+console.log(binaryStringExpansion("1?11?111?"))
 
 // function binaryStringExpansion(str1, str2, arr = []) {
 //   for (let i = 0; i < str1.length; i++) {
