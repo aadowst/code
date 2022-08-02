@@ -22,25 +22,25 @@ public class CafeJava {
         boolean isReadyOrder4 = false;
 
         
-        // System.out.println(generalGreeting + customer1);
-        // System.out.println(customer1 + readyMessage);
+        System.out.println(generalGreeting + customer1);
+        System.out.println(customer1 + readyMessage);
 
-        // System.out.println(generalGreeting + customer4);
-        // if(isReadyOrder4){
-        //     System.out.println(customer4 + readyMessage);
-        // }
-        // else{
-        //     System.out.println(customer4 + pendingMessage);
-        // }
+        System.out.println(generalGreeting + customer4);
+        if(isReadyOrder4){
+            System.out.println(customer4 + readyMessage);
+        }
+        else{
+            System.out.println(customer4 + pendingMessage);
+        }
 
-        // System.out.println(generalGreeting + customer2);
-        // if(isReadyOrder2){
-        //     System.out.println(customer2 + readyMessage);
-        //     System.out.println(customer2 + displayTotalMessage + 2*cappaccinoPrice);
-        // }
-        // else{
-        //     System.out.println(customer2 + pendingMessage);
-        // }
+        System.out.println(generalGreeting + customer2);
+        if(isReadyOrder2){
+            System.out.println(customer2 + readyMessage);
+            System.out.println(customer2 + displayTotalMessage + 2*cappaccinoPrice);
+        }
+        else{
+            System.out.println(customer2 + pendingMessage);
+        }
 
         System.out.println(displayTotalMessage + (lattePrice-dripPrice));
 
