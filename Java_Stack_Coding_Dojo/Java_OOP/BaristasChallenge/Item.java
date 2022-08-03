@@ -9,7 +9,7 @@ public class Item{
 
     // GETTERS AND SETTERS
     public String getName(){
-        return this.name;
+        return name;
     }
 
     public void setName(String name){
