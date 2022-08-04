@@ -13,9 +13,9 @@ public class Bat extends Mammal{
 	}
 	
 	public void eatHumans() {
-		energy =+ 25;
+		energy += 25;
 	}
-	
+
 	public void attackTown() {
 		System.out.println("ahhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 		energy -= 100;
