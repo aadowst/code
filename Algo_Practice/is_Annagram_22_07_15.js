@@ -23,6 +23,8 @@ const two_expected4 = true;
  * @param {string} s2
  * @returns {boolean} Whether s1 and s2 are anagrams.
  */
+
+// Uses the unicode values of charaters to see if the products of the two strings match, so not 100% accurate
 function isAnagram(s1, s2) {
     if (s1.length != s2.length) return false
     let product1 = 1;

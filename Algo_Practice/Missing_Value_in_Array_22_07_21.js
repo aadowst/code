@@ -1,78 +1,8 @@
-const cents1 = 25;
-const expected1 = { quarter: 1 };
+//   Missing Value
+//   You are given an array of length N that contains, in no particular order,
+//   integers from 0 to N . One integer value is missing.
+//   Quickly determine and return the missing value.
 
-const cents2 = 50;
-const expected2 = { quarter: 2 };
-
-const cents3 = 9;
-const expected3 = { nickel: 1, penny: 4 };
-
-const cents4 = 99;
-const expected4 = { quarter: 3, dime: 2, penny: 4 };
-
-/**
- * Calculates the fewest coins of the standard American denominations needed
- *    to reach the given cents amount.
- * - Time: O(?).
- * - Space: O(?).
- * @param {number} cents
- * @param {string} sick
- * @returns {Object<string, number>} - A denomination table where the keys are
- *    denomination names and the value is the amount of that denomination
- *    needed.
- */
-
-// pseudocode:
-// start with quarters
-// give as many as possible (under the total)
-// give one and compare to total of what's left to give
-// continue until you would have given too many
-// record the number of coins given (if 0, don't include)
-// calculate what is left to give
-// repeat with dimes, then nickels then pennies
-
-function fewestCoinChange(cents) {
-    let changeBack = 0;
-    let output = {};
-    let quarter = 0;
-    let dime = 0;
-    let nickel = 0;
-    let penny = 0;
-    while(changeBack <= cents-25){
-        quarter++;
-        changeBack += 25;
-        output["quarter"]= quarter
-    }
-    while(changeBack <= cents-10){
-        dime++;
-        changeBack += 10;
-        output["dime"]= dime
-    }
-    while(changeBack <= cents-5){
-        nickel++;
-        changeBack += 5;
-        output["nickel"]= nickel
-    }
-    while(changeBack <= cents-1){
-        penny++;
-        changeBack += 1;
-        output["penny"]= penny
-    }
-
-    return output
-}
-
-// console.log(fewestCoinChange(cents1)) // { quarter: 1 }
-// console.log(fewestCoinChange(cents2)) // { quarter: 2 }
-// console.log(fewestCoinChange(cents3)) // { nickel: 1, penny: 4 }
-// console.log(fewestCoinChange(cents4)) // { quarter: 3, dime: 2, penny: 4 }
-
-/* 
-  Missing Value
-  You are given an array of length N that contains, in no particular order,
-  integers from 0 to N . One integer value is missing.
-  Quickly determine and return the missing value.
-*/
 
 const numsA = [3, 0, 1];
 const expectedA = 2;
@@ -96,6 +26,7 @@ const expectedB = null;
 // console.log(missingValue(numsC)); // -1
 // console.log(missingValue(numsD)); // 6
 
+// Function for determining missing value for a sequential list that starts at 0
 function missingValue(unorderedNums) {
     var orderedNums = unorderedNums.sort();
     for(let i = 0; i<orderedNums.length; i++){
@@ -107,7 +38,7 @@ function missingValue(unorderedNums) {
     return null;
 }
 
-
+// Function for determining the missing value for a sequential list that starts with any non-negative number
 function missingValueWithVariableStart(unorderedNums, start = 0) {
     var orderedNums = unorderedNums.sort();
     for(let i = 0; i<orderedNums.length; i++){
@@ -119,9 +50,11 @@ function missingValueWithVariableStart(unorderedNums, start = 0) {
     return null;
 }
 
+// function for determining the missing value for a sequential list that starts with any number, including negatives
 function sortWithNegatives(unorderedNums){
     var nonnegative = [];
     var negative = [];
+    // sort handles negative and non-negative numbers differently, so this block separates them into separate arrays
     for (let i=0; i< unorderedNums.length; i++){
         if (unorderedNums[i]< 0){
             negative += unorderedNums[i]
@@ -130,7 +63,9 @@ function sortWithNegatives(unorderedNums){
         }
     }
     nonnegative = nonnegative.sort();
+    // negative numbers are sorted as if there wasn't a negative sign, so reverse puts them back in increasing order
     negative = negative.sort().reverse();
+    // recombines the lists into a new, sorted list
     var reordered = negative + nonnegative;
     var start = reordered[0]
     missingValueWithVariableStart(reordered, start)
