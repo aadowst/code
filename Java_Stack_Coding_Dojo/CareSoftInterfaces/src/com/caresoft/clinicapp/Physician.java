@@ -5,10 +5,11 @@ import java.util.Date;
 import java.lang.*;
 
 public class Physician extends User implements HIPAACompliantUser {
-
+    private ArrayList<String> patientNotes;
+    
 	public Physician(Integer id) {
 		super(id);
-
+		
 	}
 
 	@Override
@@ -32,7 +33,7 @@ public class Physician extends User implements HIPAACompliantUser {
 	}
 
 	// Inside class:    
-    private ArrayList<String> patientNotes;
+
 	
 
 	
