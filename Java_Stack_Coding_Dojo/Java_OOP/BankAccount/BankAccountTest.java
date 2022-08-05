@@ -3,7 +3,7 @@ public class BankAccountTest{
     public static void main(String[] args){
         BankAccount account1 = new BankAccount(200.0, 375);
 
-        // System.out.println(account1.getCheckingBalance());
+        System.out.println(account1.getCheckingBalance());
         // System.out.println(account1.getSavingsBalance());
         // BankAccount.getNumberOfAccountsCreated();
         // BankAccount.getTotalMoneyStored();
@@ -25,6 +25,6 @@ public class BankAccountTest{
         // System.out.println();
         // System.out.println(account1.getAllBalances());
 
-        account1.displayAccountNumber();
+        // account1.displayAccountNumber();
     }
 }

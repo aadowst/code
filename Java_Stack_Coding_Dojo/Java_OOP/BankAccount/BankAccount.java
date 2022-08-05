@@ -13,15 +13,15 @@ public class BankAccount{
         this.checkingBalance = checkingBalance;
         this.savingsBalance = savingsBalance;
         this.accountNumber = generateAccountNumber();
-        numberOfAccountsCreated +=2;
+        numberOfAccountsCreated +=1;
         totalMoneyStored += checkingBalance + savingsBalance;
 
     }
 
     //  METHODS
 
-    Random randomizer = new Random();
     private double generateAccountNumber(){
+    Random randomizer = new Random();
         double number = Math.round(randomizer.nextDouble()*1000000000);
         System.out.println(number);
         return number;
