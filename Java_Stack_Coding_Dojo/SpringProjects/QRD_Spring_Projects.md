@@ -88,16 +88,17 @@ public class HomeController {
 *Add Dependencies*
 
 Install the dependency below into pom.xml:
-```java
-    	<dependency>
-                <groupId>org.apache.tomcat.embed</groupId>
-                <artifactId>tomcat-embed-jasper</artifactId>
-        </dependency>
-		<dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>jstl</artifactId>
-        </dependency>
+```xml
+<dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-jasper</artifactId>
+</dependency>
+<dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+</dependency>
 ```
+
 *Set up WEB-INF*
 in src > main > webapp, add WEB-INF folder
 right click on the WEB-INF folder, add New > Other. Search for JSP and select "JSP File"
@@ -107,7 +108,7 @@ if needed, add: spring.mvc.view.prefix=/WEB-INF/
 
 
 *Import JSTL into your template in any .jsp file where it is needed*
-```java
+```jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- New line below to use the JSP Standard Tag Library -->
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
@@ -135,7 +136,7 @@ public class HomeController {
 ```
 
 _Sample JSP Code_
-```java
+```jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -150,4 +151,52 @@ _Sample JSP Code_
 <h2>My name is <c:out value="${firstname}"/> <c:out value="${lastname}"/></h2>
 </body>
 </html>
+```
+
+*Adding CSS*
+Right click on src/main/resources/static
+Select > New > Other
+Search for CSS
+make sure you are in src/main/resources/static
+save file (e.g. css/style.css)
+add the link tag to your .jsp file(s):  	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+*Adding JS*
+Right click on src/main/resources/static
+Select New > Other
+Search for Javascript
+Save file as js/script.js (this will also create a new folder)
+add teh script tag to your .jsp file(s):  	<script type="text/javascript" src="/js/script.js"></script>
+
+*Adding Bootstrap to Spring Projects*
+In pom.xml add the following dependencies
+```xml
+    <!-- webjars locator dependency enables auto-detection of the version, so your .jsp 
+        file links are version-agnostic in case you update the versions here in your pom later -->
+    <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>webjars-locator</artifactId>
+        <version>0.30</version>
+    </dependency>
+        <!-- BOOTSTRAP DEPENDENCIES -->
+    <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>bootstrap</artifactId>
+        <version>5.0.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>jquery</artifactId>
+        <version>3.6.0</version>
+    </dependency>
+
+```
+inside the head section of your .jsp file(s) add:
+```jsp
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<!-- YOUR own local CSS -->
+<link rel="stylesheet" href="/css/main.css"/>
+<!-- For any Bootstrap that uses JS or jQuery-->
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 ```
