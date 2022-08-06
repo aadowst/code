@@ -1,0 +1,13 @@
+@charset "ISO-8859-1";
+.flex{
+	display: flex;
+	justify-content: space-between;
+	width: 500px;
+}
+.date{
+	color: #5088d9;
+}
+
+.time{
+	color:  #71ad76;
+}
