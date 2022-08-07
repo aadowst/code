@@ -207,3 +207,33 @@ inside the head section of your .jsp file(s) add:
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 ```
+
+*Setting up Session*
+instead of Model model, add session as a parameter:  (HttpSession session)
+set the attribute of session:  session.setAttribute("key", "value")
+only need to set up session on the main page, becuase the data will be stored as an object
+
+_Sample Code_
+```java
+    public String index(HttpSession session) {
+        session.setAttribute("count", 0);
+		return "index.jsp";
+	}
+```
+
+*Using Session data*
+to store session data in a variable, it need to be typecast:  VariableType variableName = (VariableType) session.getAttribute("key");
+session data can also be added to the Model model
+
+_Sample Code_
+```java
+// ...
+	public String showCount(HttpSession session, Model model) {
+		Integer currentCount = (Integer) session.getAttribute("count");
+		model.addAttribute("countToShow", currentCount);
+		return "showCount.jsp";
+	}
+// ...
+
+
+```
