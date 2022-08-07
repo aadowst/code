@@ -17,6 +17,8 @@ Right click on the main package (in src/main/java folder) > New > Package
 add ".controllers" to the name and click finish (this will put the controllers package inside the main package)
 Right click on the .controllers package and create a new class. Name the class 'xcontroller' where x is something meaningful
 
+
+
 <!-- *Setting up RestController*
 in xcontroller.java add @RestController above the public class ... method.
 Ctrl+shift+O will auto-import what is needed -->
@@ -104,7 +106,7 @@ in src > main > webapp, add WEB-INF folder
 right click on the WEB-INF folder, add New > Other. Search for JSP and select "JSP File"
 name it (e.g. index.jsp)
 check src/main/resources > templates > application.properties
-if needed, add: spring.mvc.view.prefix=/WEB-INF/
+add: spring.mvc.view.prefix=/WEB-INF/
 
 
 *Import JSTL into your template in any .jsp file where it is needed*
@@ -152,6 +154,11 @@ _Sample JSP Code_
 </body>
 </html>
 ```
+
+*Setting up Models(s)*
+Right click on the main package (in src/main/java folder) > New > Package
+add ".models" to the name and click finish (this will put the models package inside the main package)
+Right click on the .models package and create a new class. Name the class 'xmodel' where x is something meaningful
 
 *Adding CSS*
 Right click on src/main/resources/static
