@@ -180,22 +180,21 @@ In pom.xml add the following dependencies
 ```xml
     <!-- webjars locator dependency enables auto-detection of the version, so your .jsp 
         file links are version-agnostic in case you update the versions here in your pom later -->
-    <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>webjars-locator</artifactId>
-        <version>0.30</version>
-    </dependency>
-        <!-- BOOTSTRAP DEPENDENCIES -->
-    <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>bootstrap</artifactId>
-        <version>5.0.1</version>
-    </dependency>
-    <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>jquery</artifactId>
-        <version>3.6.0</version>
-    </dependency>
+<dependency>
+<groupId>org.webjars</groupId>
+<artifactId>webjars-locator</artifactId>
+<version>0.30</version>
+</dependency>
+<dependency>
+<groupId>org.webjars</groupId>
+<artifactId>bootstrap</artifactId>
+<version>5.0.1</version>
+</dependency>
+<dependency>
+<groupId>org.webjars</groupId>
+<artifactId>jquery</artifactId>
+<version>3.6.0</version>
+</dependency>
 
 ```
 inside the head section of your .jsp file(s) add:
@@ -234,6 +233,25 @@ _Sample Code_
 		return "showCount.jsp";
 	}
 // ...
+```
 
+*Setting Up POST*
+Make sure post is the method in the form.
+In the Controller, use code like that below
+```java
+@RequestMapping(value="/login", method=RequestMethod.POST)
+public String login(
+    @RequestParam(value="email") String email,
+    @RequestParam(value="password") String password) {
+    // CODE TO PROCESS FORM ie. check email and password
+    return "redirect:/dashboard";
+}
+```
 
+As a shorthand, you can use PostMapping (and GetMapping):
+```java
+@PostMapping("/users")
+public String login() {
+// ...
+}
 ```
