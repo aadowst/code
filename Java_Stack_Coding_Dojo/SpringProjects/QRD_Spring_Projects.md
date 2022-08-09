@@ -255,3 +255,29 @@ public String login() {
 // ...
 }
 ```
+
+*Spring Data JPA*
+in pom.xml add
+```xml
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <scope>runtime</scope>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>  
+```
+
+*Connecting to MySQL*
+in application.properties add:
+spring.datasource.url=jdbc:mysql://localhost:3306/<<YOUR_SCHEMA>>
+spring.datasource.username=<<dbuser>>
+spring.datasource.password=<<dbpassword>>
+
+spring.jpa.hibernate.ddl-auto=update
