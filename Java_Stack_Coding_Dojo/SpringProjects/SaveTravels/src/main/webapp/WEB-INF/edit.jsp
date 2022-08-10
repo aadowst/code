@@ -3,42 +3,18 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isErrorPage="true" %> 
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-<title>Save Travels</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-<h1>Save Travels</h1>
-
-<table>
-<thead>
-<tr>
-<th>Expense</th>
-<th>Vendor</th>
-<th>Amount</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody>
-<c:forEach var="expense" items="${listOfExpenses }">
-<tr>
-<td><c:out value="${expense.name }" /></td>
-<td><c:out value="${expense.vendor }" /></td>
-<td><c:out value="${expense.amount }" /></td>
-<td><a href="/expenses/<c:out value='${expense.id }' />/edit">edit</a></td>
-</tr>
-</c:forEach>
-
-</tbody>
-</table>
-
-<h1>Add an Expense</h1>
-<form:form action="/expenses" method="POST" modelAttribute="expense">
+<a href="/expenses">Go back</a>
+<h1>Edit an Expense</h1>
+<form:form action="/expenses/${expense.id }" method="POST" modelAttribute="expense">
+<input type="hidden" name="_method" value="PUT">
 <div>
 <form:label path="name">Expense Name:</form:label>
 <form:errors path="name" class="text-danger"/>
@@ -54,7 +30,7 @@
 <div>
 <form:label path="amount">Amount:</form:label>
 <form:errors path="amount" class="text-danger"/>
-<form:input path="amount" type="number"/>
+<form:input path="amount" type="number" />
 </div>
 
 <div>
@@ -65,6 +41,5 @@
 
 <input type="submit" />
 </form:form>
-
 </body>
 </html>
