@@ -5,7 +5,8 @@ Make sure Type = Maven; Java Version = 8; and Packaging = War
 package and group fields = reverse domain (com.aadowst.projectname)
 Add Description
 Next
-Select "Spring Boot DevTools" and "Spring Web"
+Select "Spring Boot DevTools" and "Spring Web" 
+If using mySQL and JPA. select those as well
 Finish
 
 *Running the Application*
@@ -199,10 +200,11 @@ In pom.xml add the following dependencies
 ```
 inside the head section of your .jsp file(s) add:
 ```jsp
+<!-- Bootstrap CSS -->
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 <!-- YOUR own local CSS -->
 <link rel="stylesheet" href="/css/main.css"/>
-<!-- For any Bootstrap that uses JS or jQuery-->
+<!-- For JS or jQuery -->
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 ```
