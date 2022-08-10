@@ -22,17 +22,17 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
     @Size(min = 5, max = 200)
+    @NotNull(message="please enter a title")
     private String title;
-    @NotNull
     @Size(min = 5, max = 200)
+    @NotNull
     private String description;
-    @NotNull
-    @Size(min = 3, max = 40)
+    @Size(min = 3, max = 40, message="please enter 3 to 40 characters")
+    @NotNull(message="please enter number of pages")
     private String language;
+    @Min(value=100, message="Must not be blank")
     @NotNull
-    @Min(100)
     private Integer numberOfPages;
     // This will not allow the createdAt column to be updated after creation
     @Column(updatable=false)
