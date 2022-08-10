@@ -8,12 +8,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-<title>Insert title here</title>
+<title>Edit expense</title>
 </head>
 <body>
 <a href="/expenses">Go back</a>
 <h1>Edit an Expense</h1>
-<form:form action="/expenses/${expense.id }" method="POST" modelAttribute="expense">
+<form:form action="/expenses/${expense.id }/update" method="POST" modelAttribute="expense">
 <input type="hidden" name="_method" value="PUT">
 <div>
 <form:label path="name">Expense Name:</form:label>

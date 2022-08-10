@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.aadowst.mvc.models.Book;
 import com.aadowst.savetravels.models.Expense;
 import com.aadowst.savetravels.services.ExpenseService;
 
@@ -49,6 +50,15 @@ expenseService.save(expense);
 return "redirect:/expenses";
 }
 
+@RequestMapping("/expenses/{id}")
+public String showOne(Model model, @PathVariable("id") long id) {
+	Expense expense = expenseService.getOne(id);
+		model.addAttribute("expense", expense);
+
+	return "show.jsp";
+}
+
+
 @RequestMapping("/expenses/{id}/edit")
 public String edit(@PathVariable("id") Long id, Model model) {
 	Expense expense = expenseService.getOne(id);
@@ -56,7 +66,7 @@ public String edit(@PathVariable("id") Long id, Model model) {
 	return "edit.jsp";
 }
 
-@PutMapping(value="expenses/{id}")
+@PutMapping(value="expenses/{id}/update")
 public String update(@PathVariable("id") Long id, @Valid @ModelAttribute("expense") Expense expense, BindingResult result) {
 	System.out.println("Binding Result:  " + result);
 	
@@ -69,5 +79,10 @@ public String update(@PathVariable("id") Long id, @Valid @ModelAttribute("expens
 	}
 }
 
+@RequestMapping(value="/expenses/{id}", method=RequestMethod.DELETE)
+public String destroy(@PathVariable("id") Long id) {
+	expenseService.delete(id);
+	return "redirect:/expenses";
+}
 
 }
