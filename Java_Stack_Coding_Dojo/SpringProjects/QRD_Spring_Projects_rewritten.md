@@ -23,6 +23,7 @@ spring.datasource.url=jdbc:mysql://localhost:3306/<<YOUR_SCHEMA>>
 spring.datasource.username=root
 spring.datasource.password=root
 spring.jpa.hibernate.ddl-auto=update
+#using hidden methods for put requests
 spring.mvc.hiddenmethod.filter.enabled=true
 ```
 
@@ -35,6 +36,8 @@ visit localhost:8080 to look for whitelabel error (this is good)
 *Add Dependencies*
 
 Install the dependency below into pom.xml:
+DO I NEED TO CHANGE THE VERSION OF SPRING BOOT TO 2.6.3?
+
 ```xml
 <!-- TOMCAT AND JSTL -->
 <dependency>
@@ -86,10 +89,10 @@ Right click on the main package (in src/main/java folder) > New > Package
 add ".models" to the name and click finish (this will put the models package inside the main package)
 Right click on the .models package and create a new class. Name the class 'xmodel' where x is something meaningful
 In the model above the public class, add @Entitiy and @Table(name="models")
-add all member variables with appropriate annotations
+add all member variables with appropriate annotations (add custom error messages). Don't forget createdAt and updatedAt
 Add a zero-argument constructor
 Add a constructor that passes in the variables that aren't automatic (i.e. not id, createdA, updatedAt)
-Add getters and setters
+Add getters and setters (right click > Source> Generate...)
 Add PrePersist and PreUpdate
 ```JAVA
     @PrePersist
@@ -153,9 +156,9 @@ public class Book {
 
 *Add Repository*
 Add a new package called "repositories"
-Add an interface called XRepository
+Add an interface called XxxRepository
 Add @Repository above the public interface...
-write "extends CrudRepository<X, Long> after the name of the repository
+write "extends CrudRepository<Xxx, Long> after the name of the repository
 
 _Sample Repository Code_
 ```java
@@ -169,9 +172,9 @@ public interface ExpenseRepository extends CrudRepository<Expense, Long>{
 
 *Add Services*
 add a new package called "services"
-add a new class named XService, where x is the name of the model
+add a new class named XxxService, where Xxx is the name of the model
 add @Service above the class method
-Autowire the repository (sets it up as a dependency and runs the constructor in one step):  @Autowired  #line break# private XRepository xrepository;
+Autowire the repository (sets it up as a dependency and runs the constructor in one step):  @Autowired  #line break# private XxxRepository xxxRepository;
 ```java
 @Service
 public class ExpenseService {
@@ -184,48 +187,52 @@ public class ExpenseService {
 
 
 *Add CRUD*
+in VSCode, change the names of the Types, variariables and repo name
+then copy the code below
 ```java
 	// ========== Create / Update ===============
 
-	public Expense save(Expense expense) {
-		return expenseRepository.save(expense);
+	public Song save(Song song) {
+		return songRepository.save(song);
 	}
 
 	// ========== Read ==========================
 	
-	public List<Expense> getAll() {
-		return expenseRepository.findAll();
+	public List<Song> getAll() {
+		return (List<Song>) songRepository.findAll();
 	}
 	
-	public Expense getOne(Long id) {
-		Optional<Expense> optExpense = expenseRepository.findById(id);
+	public Song getOne(Long id) {
+        // CODE AT BOTTOM REPLACES ALL OF THIS
+		// Optional<Song> optSong = songRepository.findById(id);
 		
-		if (optExpense.isPresent()) {
-			return optExpense.get();
-		} else {
-			return null;
-		}
+		// if (optSong.isPresent()) {
+		// 	return optSong.get();
+		// } else {
+		// 	return null;
+		// }
+        return songRepository.findById(id).orElse(null);
 	}
 	
 	// ========== Delete ========================
 	
 	public void delete(Long id) {
-		expenseRepository.deleteById(id);
+		songRepository.deleteById(id);
 	}
 ```
 
 *Setting up Controller(s)*
 Right click on the main package (in src/main/java folder) > New > Package
 add ".controllers" to the name and click finish (this will put the controllers package inside the main package)
-Right click on the .controllers package and create a new class. Name the class 'xcontroller' where x is something meaningful
+Right click on the .controllers package and create a new class. Name the class 'Xxxcontroller'
 
 
 *Setting up Controller*
-in xcontroller.java add @Controller above the public class ... method.
+in Xxxcontroller.java add @Controller above the public class ... method.
 Ctrl+shift+O will auto-import what is needed
 Autowire the service:
 @Autowired
-XService xservice;
+private XxxService xxxService;
 
 *Setting up RequestMapping*
 within the class, type "@RequestMapping('route')" and then set up a function below:
