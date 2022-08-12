@@ -39,47 +39,76 @@ Install the dependency below into pom.xml:
 DO I NEED TO CHANGE THE VERSION OF SPRING BOOT TO 2.6.3?
 
 ```xml
-<!-- TOMCAT AND JSTL -->
-<dependency>
-        <groupId>org.apache.tomcat.embed</groupId>
-        <artifactId>tomcat-embed-jasper</artifactId>
-</dependency>
-<dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>jstl</artifactId>
-</dependency>
-
-<!-- SPRING JPA -->
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <scope>runtime</scope>
-</dependency>
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-data-jpa</artifactId>
-</dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-validation</artifactId>
-    </dependency>  
-
-<!-- BOOTSTRAP -->
-<dependency>
-    <groupId>org.webjars</groupId>
-    <artifactId>webjars-locator</artifactId>
-    <version>0.30</version>
-</dependency>
-<dependency>
-    <groupId>org.webjars</groupId>
-    <artifactId>bootstrap</artifactId>
-    <version>5.0.1</version>
-</dependency>
-<dependency>
-    <groupId>org.webjars</groupId>
-    <artifactId>jquery</artifactId>
-    <version>3.6.0</version>
-</dependency>
+        <!-- DEPENDENCIES FOR STARTING SPRING PROJECTS-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- DEPENDENCIES FOR DISPLAYING JSPS AND USING JSTL TAGS -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+        <!-- DEPENDENCIES FOR INTEGRATING SQL DATABASE AND USING JPA -->
+        <!-- Note: Project will not run until a schema has been created and the 
+            proper settings in application properties are present for 
+            connecting to a database. -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <!-- DEPENDENCY FOR USING VALIDATION ANNOTATIONS -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <!-- DEPENDENCY FOR USING BCRYPT  -->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+        <!-- DEPENDENCIES FOR BOOTSTRAP -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator</artifactId>
+            <version>0.30</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>5.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.6.0</version>
+        </dependency>
 ```
 
 
@@ -92,6 +121,7 @@ In the model above the public class, add @Entitiy and @Table(name="models")
 add all member variables with appropriate annotations (add custom error messages). Don't forget createdAt and updatedAt
 Add a zero-argument constructor
 Add a constructor that passes in the variables that aren't automatic (i.e. not id, createdA, updatedAt)
+if setting up a relationship, use the appropriate annotations
 Add getters and setters (right click > Source> Generate...)
 Add PrePersist and PreUpdate
 ```JAVA
@@ -192,32 +222,32 @@ then copy the code below
 ```java
 	// ========== Create / Update ===============
 
-	public Song save(Song song) {
-		return songRepository.save(song);
+	public Ninja save(Ninja ninja) {
+		return ninjaRepository.save(ninja);
 	}
 
 	// ========== Read ==========================
 	
-	public List<Song> getAll() {
-		return (List<Song>) songRepository.findAll();
+	public List<Ninja> getAll() {
+		return (List<Ninja>) ninjaRepository.findAll();
 	}
 	
-	public Song getOne(Long id) {
+	public Ninja getOne(Long id) {
         // CODE AT BOTTOM REPLACES ALL OF THIS
-		// Optional<Song> optSong = songRepository.findById(id);
+		// Optional<Ninja> optNinja = ninjaRepository.findById(id);
 		
-		// if (optSong.isPresent()) {
-		// 	return optSong.get();
+		// if (optNinja.isPresent()) {
+		// 	return optNinja.get();
 		// } else {
 		// 	return null;
 		// }
-        return songRepository.findById(id).orElse(null);
+        return ninjaRepository.findById(id).orElse(null);
 	}
 	
 	// ========== Delete ========================
 	
 	public void delete(Long id) {
-		songRepository.deleteById(id);
+		ninjaRepository.deleteById(id);
 	}
 ```
 
