@@ -36,7 +36,7 @@ visit localhost:8080 to look for whitelabel error (this is good)
 *Add Dependencies*
 
 Install the dependency below into pom.xml:
-DO I NEED TO CHANGE THE VERSION OF SPRING BOOT TO 2.6.3?
+
 
 ```xml
         <!-- DEPENDENCIES FOR STARTING SPRING PROJECTS-->
@@ -120,7 +120,7 @@ Right click on the .models package and create a new class. Name the class 'xmode
 In the model above the public class, add @Entitiy and @Table(name="models")
 add all member variables with appropriate annotations (add custom error messages). Don't forget createdAt and updatedAt
 Add a zero-argument constructor
-Add a constructor that passes in the variables that aren't automatic (i.e. not id, createdA, updatedAt)
+Add a constructor that passes in the variables that aren't automatic (i.e. not id, createdA, updatedAt) (NOT NECESSARY UNLESS USING AN API)
 if setting up a relationship, use the appropriate annotations
 Add getters and setters (right click > Source> Generate...)
 Add PrePersist and PreUpdate
@@ -165,12 +165,13 @@ public class Book {
     
     public Book() {
     }
-    public Book(String title, String desc, String lang, int pages) {
-        this.title = title;
-        this.description = desc;
-        this.language = lang;
-        this.numberOfPages = pages;
-    }
+    // A CONSTRUCTOR WITH MEMBER VARIABLES IS ONLY REQUIRED IF USING THE API
+    // public Book(String title, String desc, String lang, int pages) {
+    //     this.title = title;
+    //     this.description = desc;
+    //     this.language = lang;
+    //     this.numberOfPages = pages;
+    // }
     
     // other getters and setters removed for brevity
     @PrePersist
@@ -183,6 +184,31 @@ public class Book {
     }
 }
 ```
+
+*Add LoginUser (if the site requires login & reg)*
+in models, add the following code (notice @Entity is not included, since we don't want to save it in the db)
+```java
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+    
+public class LoginUser {
+    
+    @NotEmpty(message="Email is required!")
+    @Email(message="Please enter a valid email!")
+    private String email;
+    
+    @NotEmpty(message="Password is required!")
+    @Size(min=8, max=128, message="Password must be between 8 and 128 characters")
+    private String password;
+    
+    public LoginUser() {}
+    
+    // TODO - Don't forget to generate getters and setters
+    
+}
+```
+
 
 *Add Repository*
 Add a new package called "repositories"
@@ -198,6 +224,15 @@ import com.aadowst.savetravels.models.Expense;
 public interface ExpenseRepository extends CrudRepository<Expense, Long>{
 }
 
+```
+
+*Setting up a UserRepository (for registration)*
+```java
+// .. imports .. //
+@Repository
+public interface UserRepository extends CrudRepository<User, Long> {
+    Optional<User> findByEmail(String email);
+    }
 ```
 
 *Add Services*
@@ -233,14 +268,6 @@ then copy the code below
 	}
 	
 	public Ninja getOne(Long id) {
-        // CODE AT BOTTOM REPLACES ALL OF THIS
-		// Optional<Ninja> optNinja = ninjaRepository.findById(id);
-		
-		// if (optNinja.isPresent()) {
-		// 	return optNinja.get();
-		// } else {
-		// 	return null;
-		// }
         return ninjaRepository.findById(id).orElse(null);
 	}
 	
@@ -249,6 +276,40 @@ then copy the code below
 	public void delete(Long id) {
 		ninjaRepository.deleteById(id);
 	}
+```
+
+*Setting up a UserService*
+```java
+// imports
+@Service
+public class UserService {
+        @Autowired
+    private UserRepository userRepository;
+        // TO-DO: Write register and login methods!
+    public User register(User newUser, BindingResult result) {
+    	// TO-DO - Reject values or register if no errors:
+        
+        // Reject if email is taken (present in database)
+        // Reject if password doesn't match confirmation
+        
+        // Return null if result has errors
+    
+        // Hash and set password, save user to database
+        return null;
+    }
+    public User login(LoginUser newLoginObject, BindingResult result) {
+        // TO-DO - Reject values:
+        
+    	// Find user in the DB by email
+        // Reject if NOT present
+        
+        // Reject if BCrypt password match fails
+    
+        // Return null if result has errors
+        // Otherwise, return the user object
+        return null;
+    }
+}
 ```
 
 *Setting up Controller(s)*
@@ -323,6 +384,7 @@ Note:  you already set up the link to the WEB-INF folder above
 ```
 
 *If you are using forms with validations, add the following to .jsp*
+Note:  for login and reg the modelAttribute should be "newLogin" and "newUser", respectively
 ```jsp
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isErrorPage="true" %> 
