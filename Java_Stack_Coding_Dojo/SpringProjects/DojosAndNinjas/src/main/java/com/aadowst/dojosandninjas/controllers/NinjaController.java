@@ -20,30 +20,31 @@ import com.aadowst.dojosandninjas.services.NinjaService;
 
 @Controller
 public class NinjaController {
-@Autowired
-private NinjaService ninjaService;
-
-@Autowired
-private DojoService dojoService;
-
-
-@GetMapping("/ninjas/new")
-public String newNinja(Model model, @ModelAttribute("ninja")Ninja ninja) {
-	List<Dojo> listOfDojos = dojoService.getAll();
-	model.addAttribute("listOfDojos", listOfDojos);
-	return "newNinja.jsp";
-}
-
-@PostMapping("/ninjas/create")
-public String createNinja(Model model, @Valid @ModelAttribute("ninja") Ninja ninja, BindingResult result, @RequestParam(value="dojo") String dojoId) {
-	if(result.hasErrors()) {
-		System.out.println(result.getAllErrors());
+	@Autowired
+	private NinjaService ninjaService;
+	
+	@Autowired
+	private DojoService dojoService;
+	
+	
+	@GetMapping("/ninjas/new")
+	public String newNinja(Model model, @ModelAttribute("ninja")Ninja ninja) {
 		List<Dojo> listOfDojos = dojoService.getAll();
 		model.addAttribute("listOfDojos", listOfDojos);
 		return "newNinja.jsp";
 	}
-	ninjaService.save(ninja);
-	return "redirect:/dojos/" + dojoId; /*change this to the dojo route when that is created*/
-}
+	
+	@PostMapping("/ninjas/create")
+	public String createNinja(Model model, @Valid @ModelAttribute("ninja") Ninja ninja, BindingResult result, @RequestParam(value="dojo") String dojoId) {
+		if(result.hasErrors()) {
+			System.out.println(result.getAllErrors());
+			List<Dojo> listOfDojos = dojoService.getAll();
+			model.addAttribute("listOfDojos", listOfDojos);
+			return "newNinja.jsp";
+		}
+		
+		Ninja newNinja = ninjaService.save(ninja);
+		return "redirect:/dojos/" + newNinja.getDojo().getId(); 
+	}
 }
 
