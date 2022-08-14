@@ -119,61 +119,53 @@ add ".models" to the name and click finish (this will put the models package ins
 Right click on the .models package and create a new class. Name the class 'xmodel' where x is something meaningful
 In the model above the public class, add @Entitiy and @Table(name="models")
 add all member variables with appropriate annotations (add custom error messages). Don't forget createdAt and updatedAt
+if setting up a relationship, use the appropriate annotations
 Add a zero-argument constructor
 Add a constructor that passes in the variables that aren't automatic (i.e. not id, createdA, updatedAt) (NOT NECESSARY UNLESS USING AN API)
-if setting up a relationship, use the appropriate annotations
 Add getters and setters (right click > Source> Generate...)
 Add PrePersist and PreUpdate
-```JAVA
-    @PrePersist
-    protected void onCreate(){
-        this.createdAt = new Date();
-    }
-    @PreUpdate
-    protected void onUpdate(){
-        this.updatedAt = new Date();
-    }
-```
 
-_Sample Model_
+_Sample Model with Many of ManyToOne (books to user)_
 ```java
 // imports and packages automatically added up here
 @Entity
 @Table(name="books")
 public class Book {
+//	PRIMARY KEY
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    
+//  MEMBER VARIABLES
+    @NotEmpty
     @Size(min = 5, max = 200)
     private String title;
-    @NotNull
+    @NotEmpty
     @Size(min = 5, max = 200)
-    private String description;
-    @NotNull
-    @Size(min = 3, max = 40)
-    private String language;
-    @NotNull
-    @Min(100)
-    private Integer numberOfPages;
-    // This will not allow the createdAt column to be updated after creation
+    private String author;
+    @NotEmpty
+    @Size(min = 5, max = 1000)
+    private String thoughts;
+    
+//  DATA CREATION MEMBER VARIABLES
+    
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
     
-    public Book() {
-    }
-    // A CONSTRUCTOR WITH MEMBER VARIABLES IS ONLY REQUIRED IF USING THE API
-    // public Book(String title, String desc, String lang, int pages) {
-    //     this.title = title;
-    //     this.description = desc;
-    //     this.language = lang;
-    //     this.numberOfPages = pages;
-    // }
+//  RELATIONSHIPS
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
     
-    // other getters and setters removed for brevity
+//  CONSTRUCTOR
+    
+    public Book() {}
+    
+//  DATA CREATION METHODS
+    
     @PrePersist
     protected void onCreate(){
         this.createdAt = new Date();
@@ -182,6 +174,81 @@ public class Book {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
+//  GETTERS AND SETTERS
+}
+```
+
+_Sample Relationships Code:  One of OneToMany (dojo to ninjas)_
+```java
+//  RELATIONSHIPS
+    @OneToMany(mappedBy="dojo", fetch = FetchType.LAZY)
+    private List<Ninja> ninjas;
+```
+
+_Sample User Code_
+```java
+@Entity
+@Table(name="users")
+public class User {
+	
+//	PRIMARY KEY
+	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+//  MEMBER VARIABLES
+    
+    @NotEmpty(message="First name is required!")
+    @Size(min=3, max=30, message="First name must be between 3 and 30 characters")
+    private String firstName;
+    
+    @NotEmpty(message="Last name is required!")
+    @Size(min=3, max=30, message="Lsst name must be between 3 and 30 characters")
+    private String lastName;
+    
+    @NotEmpty(message="Username is required!")
+    @Size(min=3, max=30, message="Username must be between 3 and 30 characters")
+    private String userName;
+    
+    @NotEmpty(message="Email is required!")
+    @Email(message="Please enter a valid email!")
+    private String email;
+    
+    @NotEmpty(message="Password is required!")
+    @Size(min=8, max=128, message="Password must be between 8 and 128 characters")
+    private String password;
+    
+    @Transient
+    @NotEmpty(message="Confirm Password is required!")
+    @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
+    private String confirm;
+    
+//  DATA CREATION MEMBER VARIABLES
+    
+    @Column(updatable=false)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date createdAt;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date updatedAt;
+    
+//  RELATIONSHIPS
+    
+//  CONSTRUCTORS
+    
+    public User() {}
+    
+//  DATA CREATION METHODS
+    
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt = new Date();
+    }
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = new Date();
+    }
+//  GETTERS AND SETTERS
 }
 ```
 
@@ -221,7 +288,9 @@ _Sample Repository Code_
 package com.aadowst.savetravels.repositories;
 import org.springframework.data.repository.CrudRepository;
 import com.aadowst.savetravels.models.Expense;
+@Repository
 public interface ExpenseRepository extends CrudRepository<Expense, Long>{
+    	List<Expense> findAll();
 }
 
 ```
@@ -232,6 +301,7 @@ public interface ExpenseRepository extends CrudRepository<Expense, Long>{
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
     Optional<User> findByEmail(String email);
+    Optional<User> findById(Long id); 
     }
 ```
 
@@ -257,24 +327,24 @@ then copy the code below
 ```java
 	// ========== Create / Update ===============
 
-	public Ninja save(Ninja ninja) {
-		return ninjaRepository.save(ninja);
+	public Book save(Book book) {
+		return bookRepository.save(book);
 	}
 
 	// ========== Read ==========================
 	
-	public List<Ninja> getAll() {
-		return (List<Ninja>) ninjaRepository.findAll();
+	public List<Book> getAll() {
+		return (List<Book>) bookRepository.findAll();
 	}
 	
-	public Ninja getOne(Long id) {
-        return ninjaRepository.findById(id).orElse(null);
+	public Book getOne(Long id) {
+        return bookRepository.findById(id).orElse(null);
 	}
 	
 	// ========== Delete ========================
 	
 	public void delete(Long id) {
-		ninjaRepository.deleteById(id);
+		bookRepository.deleteById(id);
 	}
 ```
 
@@ -283,32 +353,55 @@ then copy the code below
 // imports
 @Service
 public class UserService {
-        @Autowired
-    private UserRepository userRepository;
-        // TO-DO: Write register and login methods!
+
+	@Autowired
+	private UserRepository userRepository; 
+	
+//	REGISTER AND LOGIN
+
     public User register(User newUser, BindingResult result) {
-    	// TO-DO - Reject values or register if no errors:
-        
-        // Reject if email is taken (present in database)
-        // Reject if password doesn't match confirmation
-        
-        // Return null if result has errors
-    
-        // Hash and set password, save user to database
-        return null;
+        // is the email unique?
+    	if(userRepository.findByEmail(newUser.getEmail()).isPresent()){
+    		result.rejectValue("email", "Unique", "Email already in use");
+    	}
+    	//    	compare password to confirmPassword
+    	if(!newUser.getPassword().equals(newUser.getConfirm())) {
+    		result.rejectValue("confirm", "Matches", "Password and confirm password must match");
+    	}
+    	// check for any errors  
+    	if(result.hasErrors()) {
+    		return null;
+    	}
+    	
+    	String hashedPassword = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
+    	newUser.setPassword(hashedPassword);
+    	
+    	return userRepository.save(newUser);
     }
-    public User login(LoginUser newLoginObject, BindingResult result) {
-        // TO-DO - Reject values:
-        
-    	// Find user in the DB by email
-        // Reject if NOT present
-        
-        // Reject if BCrypt password match fails
     
-        // Return null if result has errors
-        // Otherwise, return the user object
-        return null;
+    
+    public User login(LoginUser newLoginUser, BindingResult result) {
+    	if(result.hasErrors()) {
+    		return null;
+    	}
+    	Optional<User> potentialUser = userRepository.findByEmail(newLoginUser.getEmail());
+    	if(!potentialUser.isPresent()) {
+    		result.rejectValue("email", "Unique", "Invalid credentials");
+    		return null;
+    	}
+    	User user = potentialUser.get();
+    	if(!BCrypt.checkpw(newLoginUser.getPassword(), user.getPassword())) {
+    		result.rejectValue("password", "Matches", "Invalid credentials");
+    		return null;
+    	}
+        return user;
     }
+	
+//	READ
+	
+	public User getOne(Long id) {
+		return userRepository.findById(id).orElse(null);
+	}
 }
 ```
 
@@ -345,6 +438,62 @@ public class HomeController {
 	public String index() {
 		return "index.jsp";
 	}
+}
+```
+
+
+_Sample Code UserController_
+```java
+@Controller
+public class UserController {
+@Autowired
+private UserService userService;
+
+@GetMapping("/")
+public String index(@ModelAttribute("newUser") User newUser, @ModelAttribute("newLogin") LoginUser newLogin, HttpSession session) {
+	if(session.getAttribute("userId") != null) {
+		return "redirect:/dashboard";
+	}
+	return "index.jsp";
+}
+
+@PostMapping("/register")
+public String register(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model, HttpSession session) {
+	User user = userService.register(newUser, result);
+		if(result.hasErrors()) {
+		model.addAttribute("newLogin", new LoginUser());
+		return "index.jsp";
+	}
+	session.setAttribute("userId", user.getId());
+	return "redirect:/dashboard";
+}
+
+@PostMapping("/login")
+public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, BindingResult result, Model model, HttpSession session) {
+	User user = userService.login(newLogin, result);
+	if(result.hasErrors()) {
+		model.addAttribute("newUser", new User());
+		return "index.jsp";
+	}
+	session.setAttribute("userId", user.getId());
+	return "redirect:/dashboard";
+}
+
+@GetMapping("/logout")
+public String logout(HttpSession session) {
+	session.removeAttribute("userId");
+	return "redirect:/";
+}
+
+@GetMapping("/dashboard")
+public String dashboard(HttpSession session, Model model) {
+	if(session.getAttribute("userId") != null) {
+	User user = userService.getOne((Long) session.getAttribute("userId"));
+	model.addAttribute("user", user);
+	return "dashboard.jsp";
+	}
+	return "redirect:/";
+}
 }
 ```
 
