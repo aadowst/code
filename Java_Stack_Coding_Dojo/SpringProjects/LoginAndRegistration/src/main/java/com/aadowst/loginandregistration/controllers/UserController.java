@@ -21,8 +21,10 @@ public class UserController {
 private UserService userService;
 
 @GetMapping("/")
-public String index(@ModelAttribute("newUser") User newUser, @ModelAttribute("newLogin") LoginUser newLogin) {
-	
+public String index(@ModelAttribute("newUser") User newUser, @ModelAttribute("newLogin") LoginUser newLogin, HttpSession session) {
+	if(session.getAttribute("userId") != null) {
+		return "redirect:/dashboard";
+	}
 	return "index.jsp";
 }
 

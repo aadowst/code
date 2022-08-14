@@ -18,7 +18,6 @@ public class UserService {
 	private UserRepository userRepository; 
 	
 //	REGISTER AND LOGIN
-	
 
     public User register(User newUser, BindingResult result) {
         // is the email unique?
