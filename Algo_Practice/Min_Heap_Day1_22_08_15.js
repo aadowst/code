@@ -29,8 +29,8 @@ class MinHeap {
      * @returns {?number} Null if empty.
      */
     top() {
-        if (this.length <= 1) return null;
-        return this[1];
+        if (this.heap.length <= 1) return null;
+        return this.heap[1];
 
     }
 
