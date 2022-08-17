@@ -18,9 +18,10 @@
 	<div class="col-12">
 		<div class="d-flex justify-content-between align-items-center m-4">
 			<div>
+			<h5>Hi, <c:out value="${user.name }" />. Welcome to...</h5>
 				<h2>
-					Welcome
-					<c:out value="${user.name }" />
+					The Book Broker
+					
 				</h2>
 			</div>
 			<div>
@@ -28,9 +29,9 @@
 			</div>
 		</div>
 		<div class="d-flex justify-content-between align-items-center m-4">
-			<div>Books from everyone's shelves:</div>
+			<div><h5>Available Books to Borrow:</h5></div>
 			<div>
-				<a href="/books/new">+ Add to my shelf!</a>
+				<a href="/books/new">+ Add a New Book!</a>
 			</div>
 		</div>
 		<div>
@@ -40,17 +41,28 @@
 						<th>ID</th>
 						<th>Title</th>
 						<th>Author Name</th>
-						<th>Posted By</th>
+						<th>Owner</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="book" items="${listOfBooks }">
+					<c:forEach var="book" items="${listOfAvailableBooks }">
 						<tr>
 							<th scope="row"><c:out value="${book.id }" /></th>
 							<td><a href="/books/${book.id }"><c:out
 										value="${book.title }" /></a></td>
 							<td><c:out value="${book.author }" /></td>
-							<td><c:out value="${book.user.name }" /></td>
+							<td><c:out value="${book.owner.name }" /></td>
+							<td>
+								<c:if test="${user.id == book.owner.id }">
+									<a href="/books/${book.id }/edit">edit</a> 
+									<a href="/books/${book.id }/delete">delete</a>
+								</c:if>
+								
+								<c:if test="${user.id != book.owner.id }">
+									<a href="/books/${book.id }/borrow">borrow</a> 
+								</c:if>
+							</td>
 						</tr>
 
 					</c:forEach>
@@ -59,7 +71,38 @@
 
 			</table>
 		</div>
+		<div class="d-flex justify-content-between align-items-center m-4">
+			<div><h5>Books I'm Borrowing:</h5></div>
 
+		</div>
+		<div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Title</th>
+						<th>Author Name</th>
+						<th>Owner</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="book" items="${listOfBorrowedBooks }">
+						<tr>
+							<th scope="row"><c:out value="${book.id }" /></th>
+							<td><a href="/books/${book.id }"><c:out
+										value="${book.title }" /></a></td>
+							<td><c:out value="${book.author }" /></td>
+							<td><c:out value="${book.owner.name }" /></td>
+							<td><a href="/books/${book.id }/return">return</a> </td>
+						</tr>
+
+					</c:forEach>
+
+				</tbody>
+
+			</table>
+		</div>
 
 	</div>
 </body>

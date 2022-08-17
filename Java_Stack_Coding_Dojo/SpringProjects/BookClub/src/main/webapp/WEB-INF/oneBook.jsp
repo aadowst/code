@@ -26,7 +26,7 @@
 	</div>
 	<div class="main m-4">
 		<c:choose>
-			<c:when test="${user.id == book.user.id }">
+			<c:when test="${user.id == book.owner.id }">
 				<h5>
 					You read <span style="font-style: italic;"><c:out
 							value="${book.title }" /></span> by
@@ -56,7 +56,7 @@
 			</p>
 		</div>
 
-		<c:if test="${user.id == book.user.id }">
+		<c:if test="${user.id == book.owner.id }">
 			<a href="/books/${book.id}/edit"><button class="btn btn-primary"
 					type="button">Edit</button></a>
 		</c:if>

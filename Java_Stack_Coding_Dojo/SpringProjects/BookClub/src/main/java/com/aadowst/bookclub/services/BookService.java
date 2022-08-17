@@ -12,7 +12,7 @@ import com.aadowst.bookclub.repositories.BookRepository;
 public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
-	
+
 	// ========== Create / Update ===============
 
 	public Book save(Book book) {
@@ -20,19 +20,27 @@ public class BookService {
 	}
 
 	// ========== Read ==========================
-	
+
 	public List<Book> getAll() {
-		return (List<Book>) bookRepository.findAll();
+		return bookRepository.findAll();
 	}
-	
+
+	public List<Book> getAllBorrowed(Long borrowerId) {
+		return bookRepository.findAllByBorrowerId(borrowerId);
+	}
+
+	public List<Book> getAllNotBorrowed() {
+		return bookRepository.findAllByBorrowerIsNull();
+	}
+
 	public Book getOne(Long id) {
-        return bookRepository.findById(id).orElse(null);
+		return bookRepository.findById(id).orElse(null);
 	}
-	
+
 	// ========== Delete ========================
-	
+
 	public void delete(Long id) {
 		bookRepository.deleteById(id);
 	}
-	
+
 }

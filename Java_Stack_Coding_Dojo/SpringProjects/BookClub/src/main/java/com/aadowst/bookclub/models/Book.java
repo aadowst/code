@@ -19,40 +19,43 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="books")
+@Table(name = "books")
 public class Book {
 //	PRIMARY KEY
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 //  MEMBER VARIABLES
-    @NotEmpty(message="Please include a title")
-    @Size(min = 5, max = 200, message="Title should be 5 to 200 characters")
-    private String title;
-    @NotEmpty(message="Please include an author")
-    @Size(min = 5, max = 200, message="Author should be 5 to 200 characters")
-    private String author;
-    @NotEmpty(message="Please include your thoughts")
-    @Size(min = 20, max = 200, message="Thoughts should be 20 to 200 characters")
-    private String thoughts;
-    
+	@NotEmpty(message = "Please include a title")
+	@Size(min = 5, max = 200, message = "Title should be 5 to 200 characters")
+	private String title;
+	@NotEmpty(message = "Please include an author")
+	@Size(min = 5, max = 200, message = "Author should be 5 to 200 characters")
+	private String author;
+	@NotEmpty(message = "Please include your thoughts")
+	@Size(min = 20, max = 200, message = "Thoughts should be 20 to 200 characters")
+	private String thoughts;
+
 //  DATA CREATION MEMBER VARIABLES
-    
-    @Column(updatable=false)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date createdAt;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date updatedAt;
-    
+
+	@Column(updatable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date createdAt;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date updatedAt;
+
 //  RELATIONSHIPS
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User user;
-    
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "owner_id")
+	private User owner;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "borrower_id")
+	private User borrower;
 //  CONSTRUCTOR
-    
-    public Long getId() {
+
+	public Long getId() {
 		return id;
 	}
 
@@ -100,26 +103,36 @@ public class Book {
 		this.updatedAt = updatedAt;
 	}
 
-	public User getUser() {
-		return user;
+	public User getOwner() {
+		return owner;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 
-	public Book() {}
-    
+	public User getBorrower() {
+		return borrower;
+	}
+
+	public void setBorrower(User borrower) {
+		this.borrower = borrower;
+	}
+
+	public Book() {
+	}
+
 //  DATA CREATION METHODS
-    
-    @PrePersist
-    protected void onCreate(){
-        this.createdAt = new Date();
-    }
-    @PreUpdate
-    protected void onUpdate(){
-        this.updatedAt = new Date();
-    }
+
+	@PrePersist
+	protected void onCreate() {
+		this.createdAt = new Date();
+	}
+
+	@PreUpdate
+	protected void onUpdate() {
+		this.updatedAt = new Date();
+	}
 //  GETTERS AND SETTERS
-    
+
 }

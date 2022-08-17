@@ -26,7 +26,7 @@
 	<div class="form col-4 m-4">
 		<form:form action="/books/${book.id }/update" method="post"
 			modelAttribute="book">
-			<form:input type="hidden" path="user" value="${user.id }" />
+			<form:input type="hidden" path="owner" value="${user.id }" />
 
 			<div class="form-group d-flex justify-content-between my-2">
 				<form:label path="title" class="w-25" value="${book.title }">Title:  </form:label>

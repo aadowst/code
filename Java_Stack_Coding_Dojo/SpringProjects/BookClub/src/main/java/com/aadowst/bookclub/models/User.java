@@ -21,55 +21,57 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
-	
+
 //	PRIMARY KEY
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 //  MEMBER VARIABLES
-    
-   
-    @NotEmpty(message="Name is required!")
-    @Size(min=3, max=30, message="Name must be between 3 and 30 characters")
-    private String name;
-    
-    @NotEmpty(message="Email is required!")
-    @Email(message="Please enter a valid email!")
-    private String email;
-    
-    @NotEmpty(message="Password is required!")
-    @Size(min=8, max=128, message="Password must be between 8 and 128 characters")
-    private String password;
-    
-    @Transient
-    @NotEmpty(message="Confirm Password is required!")
-    @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
-    private String confirm;
-    
+
+	@NotEmpty(message = "Name is required!")
+	@Size(min = 3, max = 30, message = "Name must be between 3 and 30 characters")
+	private String name;
+
+	@NotEmpty(message = "Email is required!")
+	@Email(message = "Please enter a valid email!")
+	private String email;
+
+	@NotEmpty(message = "Password is required!")
+	@Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters")
+	private String password;
+
+	@Transient
+	@NotEmpty(message = "Confirm Password is required!")
+	@Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters")
+	private String confirm;
+
 //  DATA CREATION MEMBER VARIABLES
-    
-    @Column(updatable=false)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date createdAt;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date updatedAt;
-    
+
+	@Column(updatable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date createdAt;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date updatedAt;
+
 //  RELATIONSHIPS
-    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
-    private List<Book> books;
-    
-    
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	private List<Book> books;
+
+	@OneToMany(mappedBy = "borrower", fetch = FetchType.LAZY)
+	private List<Book> borrowedBooks;
+
 //  CONSTRUCTORS
-    
-    public User() {}
-    
+
+	public User() {
+	}
+
 //  DATA CREATION METHODS
-    
-    public Long getId() {
+
+	public Long getId() {
 		return id;
 	}
 
@@ -133,13 +135,22 @@ public class User {
 		this.books = books;
 	}
 
+	public List<Book> getBorrowedBooks() {
+		return borrowedBooks;
+	}
+
+	public void setBorrowedBooks(List<Book> borrowedBooks) {
+		this.borrowedBooks = borrowedBooks;
+	}
+
 	@PrePersist
-    protected void onCreate(){
-        this.createdAt = new Date();
-    }
-    @PreUpdate
-    protected void onUpdate(){
-        this.updatedAt = new Date();
-    }
+	protected void onCreate() {
+		this.createdAt = new Date();
+	}
+
+	@PreUpdate
+	protected void onUpdate() {
+		this.updatedAt = new Date();
+	}
 //  GETTERS AND SETTERS
 }
