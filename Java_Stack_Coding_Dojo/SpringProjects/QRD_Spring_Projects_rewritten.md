@@ -327,24 +327,24 @@ then copy the code below
 ```java
 	// ========== Create / Update ===============
 
-	public Book save(Book book) {
-		return bookRepository.save(book);
+	public Event save(Event event) {
+		return eventRepository.save(event);
 	}
 
 	// ========== Read ==========================
 	
-	public List<Book> getAll() {
-		return (List<Book>) bookRepository.findAll();
+	public List<Event> getAll() {
+		return (List<Event>) eventRepository.findAll();
 	}
 	
-	public Book getOne(Long id) {
-        return bookRepository.findById(id).orElse(null);
+	public Event getOne(Long id) {
+        return eventRepository.findById(id).orElse(null);
 	}
 	
 	// ========== Delete ========================
 	
 	public void delete(Long id) {
-		bookRepository.deleteById(id);
+		eventRepository.deleteById(id);
 	}
 ```
 
