@@ -2,7 +2,7 @@ package com.caresoft.clinicapp;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.lang.*;
+// import java.lang.*;
 
 public class Physician extends User implements HIPAACompliantUser {
     private ArrayList<String> patientNotes;

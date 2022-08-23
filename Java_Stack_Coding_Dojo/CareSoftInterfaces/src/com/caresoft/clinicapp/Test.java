@@ -3,11 +3,11 @@ package com.caresoft.clinicapp;
 public class Test {
 
 	public Test() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 
 		// .. Main method set up ... //
         Physician doctor10 = new Physician(1);
