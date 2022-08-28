@@ -39,7 +39,7 @@ function quicksort(arr, left=0, right = arr.length-1){
     let pivotIndexR = pivotIndexL;
 
     //recursively call the partition function on both the sides of the pivot index (excluding the pivot index, itself)
-    //the returned values are now called pivotIndexL and pivotIndexR and they
+    //the returned values are now called pivotIndexL and pivotIndexR, respectively
     while(pivotIndexL || pivotIndexR){
         pivotIndexL = partition(arr, left, pivotIndexL-1);
         // console.log(`pivotIndexL is ${pivotIndexL}`);
