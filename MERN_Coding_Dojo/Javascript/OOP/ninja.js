@@ -22,8 +22,17 @@ class Ninja{
     }
 }
 
-const adrian = new Ninja("Adrian", 10);
-adrian.sayName();
-adrian.showStats();
-adrian.drinkSake();
-adrian.showStats();
+class Sensei extends Ninja{
+    constructor(name, health = 200, speed = 10, strength = 10, wisdom = 10){
+        super(name, health, speed, strength);
+        this.wisdom = wisdom;
+    }
+    speakWisdom(){
+        super.drinkSake();
+        console.log("If one is arguing with a fool, then there are two.");
+    }
+}
+
+const awesomeAdrian = new Sensei("Awesome Adrian");
+awesomeAdrian.speakWisdom();
+awesomeAdrian.showStats();
