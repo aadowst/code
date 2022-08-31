@@ -1,10 +1,10 @@
 Navigate to parent folder in the Terminal
-Type:  npx create-react-app MY-PROJECT NAME
+Type:  npx create-react-app my-project-name *(must use kebab or snake case)*
 Navigate into the created folder
 In the terminal, type:  npm run start
 In the text editor, open App.js
 Delete everything inside  <div className="App">
-Add a "components" folder in src
+Add a "Components" folder in src
 Create a .js file in the components folder (eg. SomeClassComponent) with the following structure:
 ```js
 import React, { Component } from 'react';
