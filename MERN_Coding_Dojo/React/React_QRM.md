@@ -20,21 +20,54 @@ class SomeClassComponent extends Component {
 export default SomeClassComponent;
 ``` -->
 
-Functional component structure
+Functional component structure with state
 ```js
-import React from 'react';
-const PersonCard = props => {
-    return(
+import React, { useState } from 'react';
+    
+const Counter = props => {
+    const [state, setState] = useState({
+        clickCount: 0
+    });
+ 
+    const handleClick = () => {
+        setState({
+            clickCount: state.clickCount + 1
+        });
+    }
+ 
+    return (
         <div>
-            <h1>{ props.lastName }, { props.firstName }</h1>
-            <p>Age: { props.age }</p>
-            <p>Hair Color: { props.hairColor }</p>
+            { state.clickCount }
+            <button onClick={ handleClick }>Click Me</button>
         </div>
     );
 }
-export default PersonCard;
+    
+export default Counter;
 ```
-Enter JSX code to be rendered w/in the rturn
+
+Note: when destructuring useState, you can define your own keys. Also, you don't need to explicitly define a property like click count. Another format is as shown below.
+```js
+import React, { useState } from 'react';
+    
+const Counter = props => {
+    const [count, setCount] = useState(0);
+ 
+    const handleClick = () => {
+        setCount(count + 1);
+    }
+ 
+    return (
+        <div>
+            { count }
+            <button onClick={ handleClick }>Click Me</button>
+        </div>
+    );
+}
+    
+export default Counter;
+```
+Enter JSX code to be rendered w/in the return
 
 In App.js, import the component(s) at the top and add them w/in the <div className="App">
 
