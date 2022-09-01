@@ -4,33 +4,32 @@ function partition(arr, left, right){
     let j = right;
     let pivot = Math.floor((left+right)/2)
     let pivotValue = arr[pivot];
-    // console.log("pivot is", pivot)
-    // console.log("pivotValue is", pivotValue)
 
-    while (i!=j){
-        // console.log(`i is ${i}`);
-        // console.log(`arr[i] is ${arr[i]}`);
-        // console.log(`j js ${j}`);
-        // console.log(`arr[j] js ${arr[j]}`);
+
+    while (i<j){
         if(arr[i]< pivotValue) {
             i++;
-            // console.log(`i is now ${i} and j is still ${j}`);
+
         }else if(arr[j]> pivotValue) {
             j--;
-            // console.log(`i is still ${i} and j is now ${j}`);
+
 
 
         }else{
             let temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp;
-            // console.log(`swap ${arr[i]} and ${arr[j]}`);
-            // console.log(arr)
+            i++;
+            j--;
         }
     }
-    // console.log("returning " + j);
+    console.log(arr)
     return j;
 }
+
+const nums2 = [11, 8, 14, 3, 3, 3, 6, 2, 7];
+partition(nums2, 0, 8);
+// console.log(nums2);
 
 function quicksort(arr, left=0, right = arr.length-1){
 
@@ -58,5 +57,5 @@ let myArray3 = [1, 30, 2, 7, 6, 3, 5, 20, 9, 15, 12, 10, 4 ];
 let myArray2 = [25, 15, 20, 10, 5, 40];
 
 
-quicksort(myArray3);
-console.log(myArray3)
+// quicksort(myArray3);
+// console.log(myArray3)
