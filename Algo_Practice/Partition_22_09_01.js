@@ -89,3 +89,7 @@ function partition(nums = [], left = 0, right = nums.length - 1) {
 
 // console.log(nums2);
 partition(nums2);
+
+module.exports = {
+    partition: partition
+};
