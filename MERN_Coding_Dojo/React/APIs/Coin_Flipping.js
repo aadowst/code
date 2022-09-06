@@ -25,7 +25,7 @@ function fiveHeadsAsync(){
     return new Promise( (resolve, reject) => {
         let headsCount = 0;
         let attempts = 0;
-        while(headsCount < 5) {
+        while(headsCount < 5 && attempts <100) {
             attempts++;
             let result = tossCoin();
             if(result === "heads") {
@@ -37,7 +37,7 @@ function fiveHeadsAsync(){
         if(headsCount >=5){
             resolve(`It took ${attempts} tries to flip five "heads"`)
         }else{
-            reject("no good")
+            reject("it took more than 100 attempts")
         }
     });
 }
