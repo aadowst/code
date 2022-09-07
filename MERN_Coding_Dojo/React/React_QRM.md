@@ -6,6 +6,41 @@ In the text editor, open App.js
 Delete everything inside  <div className="App">
 Add a "Components" folder in src
 
+Using axios
+navigate to the project folder in the terminal and type "npm install axios"
+at the top of the relevant component:  import axios from 'axios';
+
+installing React Router
+in the project folder in the terminal type:  "npm install react-router-dom"
+at the top of the index.js page, import { BrowserRouter } from 'react-router-dom'
+Wrap the App component with BrowserRouter tags
+
+sample code:
+```js
+//other imports above
+import { BrowserRouter } from 'react-router-dom';
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <React.StrictMode>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </React.StrictMode>
+);
+
+```
+
+In App.js and/or component files, import {Routes, Route, Link} from 'react-router-dom';
+Components can be defined w/in App.js or be their own files
+in the return of function App(), include everything that should always be present to the top
+Below that section, wrap Route tags with a Routes wrapper
+
+sample code:
+```js
+
+```
+
+
 <!-- Create a .js file in the components folder (eg. SomeClassComponent) with class structure:
 ```js
 import React, { Component } from 'react';
@@ -124,3 +159,4 @@ const UserForm = (props) => {
     
 export default UserForm;
 ```
+
