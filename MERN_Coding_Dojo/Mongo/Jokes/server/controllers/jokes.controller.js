@@ -22,7 +22,8 @@ module.exports.findOneJoke = (req, res) => {
 
 // UPDATE
 module.exports.updateJoke = (req, res) => {
-    Joke.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
+    //new: true returns the updated document (not the original one, which is the default, because it is faster to return. The validators are not rerun on default)
+    Joke.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, runValidators: true})
     .then(updatedJoke => res.json({joke: updatedJoke}))
     .catch(err => res.json({message:  "Something went wrong", error:err}))
 };
