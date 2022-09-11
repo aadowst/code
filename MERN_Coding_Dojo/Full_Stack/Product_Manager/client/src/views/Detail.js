@@ -17,7 +17,6 @@ const Detail = (props) => {
             <h3>Title:  {product.title}</h3>
             <h4>Price:  {product.price}</h4>
             <h5>Description:  {product.description}</h5>
-
             <Link to={'/products/' + id + "/edit"}>Edit</Link>
         </div>
     )

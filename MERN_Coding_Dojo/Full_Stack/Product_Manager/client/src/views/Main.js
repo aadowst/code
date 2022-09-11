@@ -7,6 +7,7 @@ const Main = (props)=> {
     const [products, setProducts] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
+    
     useEffect(() => {
         axios.get("http://localhost:8000/api/products")
         .then(res => {
@@ -15,11 +16,20 @@ const Main = (props)=> {
         })
         .catch(err => console.error(err))
     }, []);
+
+    const removeFromDom = productId => {
+        console.log("removeFromDom");
+        setProducts(products.filter(product => product._id !== productId));
+    }
+
     return(
         <div>
             <ProductForm/>
             <hr/>
-            {loaded && <ProductList products={products}/>}
+            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+
+            {loaded && <ProductList products={products} removeFromDom={removeFromDom}/>}
+            </div>
         </div>
     )
 }
