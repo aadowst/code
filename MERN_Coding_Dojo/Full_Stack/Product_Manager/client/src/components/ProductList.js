@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import { Link } from 'react-router-dom';
 
 const ProductList = (props) => {
@@ -8,7 +8,7 @@ const ProductList = (props) => {
         <div>
             {products.map((product, i) => {
                 const { title, _id } = product
-                console.log(product)
+
                 return (
                     <div key={i}>
                         <Link to={`/products/${_id}`}><h4>{title}</h4></Link>
