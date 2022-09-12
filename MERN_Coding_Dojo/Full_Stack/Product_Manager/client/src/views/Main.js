@@ -15,16 +15,25 @@ const Main = (props)=> {
             setLoaded(true)
         })
         .catch(err => console.error(err))
-    }, []);
+    }, [loaded]);
 
     const removeFromDom = productId => {
-        console.log("removeFromDom");
+
         setProducts(products.filter(product => product._id !== productId));
+    }
+
+    const createProduct = product => {
+        axios.post('http://localhost:8000/api/products', product)
+        .then(res=> {
+            setLoaded(false)
+            setProducts([...products, res.data])
+        // .catch(err => console.error(err))
+        })
     }
 
     return(
         <div>
-            <ProductForm/>
+            <ProductForm onSubmitProp={createProduct} initialTitle="" initialPrice="" initialDescription=""/>
             <hr/>
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
 
