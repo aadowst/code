@@ -11,63 +11,63 @@ Bonus: allow the key that is grouped by to be provided.
 */
 
 const objects = [
-{
-    name: 'Baby Yoda',
-    category: 'cute',
-},
-{
-    name: 'Cricket Protein',
-    category: 'food',
-},
-{
-    name: 'Shibe',
-    category: 'Cute',
-},
-{
-    name: 'Ancient India',
-    category: 'Cradle of Civilization',
-},
-{
-    name: 'Wasp Crackers',
-    category: 'Food',
-},
-{
-    name: 'The Fertile Crescent',
-    category: 'Cradle of Civilization',
-},
+    {
+        name: 'Baby Yoda',
+        category: 'cute',
+    },
+    {
+        name: 'Cricket Protein',
+        category: 'food',
+    },
+    {
+        name: 'Shibe',
+        category: 'Cute',
+    },
+    {
+        name: 'Ancient India',
+        category: 'Cradle of Civilization',
+    },
+    {
+        name: 'Wasp Crackers',
+        category: 'Food',
+    },
+    {
+        name: 'The Fertile Crescent',
+        category: 'Cradle of Civilization',
+    },
 ];
 
 const expected = {
-cute: [
-    {
-    name: 'Baby Yoda',
-    category: 'cute',
-    },
-    {
-    name: 'Shibe',
-    category: 'Cute',
-    },
-],
-food: [
-    {
-    name: 'Cricket Protein',
-    category: 'food',
-    },
-    {
-    name: 'Wasp Crackers',
-    category: 'Food',
-    },
-],
-'cradle of civilization': [
-    {
-    name: 'Ancient India',
-    category: 'Cradle of Civilization',
-    },
-    {
-    name: 'The Fertile Crescent',
-    category: 'Cradle of Civilization',
-    },
-],
+    cute: [
+        {
+            name: 'Baby Yoda',
+            category: 'cute',
+        },
+        {
+            name: 'Shibe',
+            category: 'Cute',
+        },
+    ],
+    food: [
+        {
+            name: 'Cricket Protein',
+            category: 'food',
+        },
+        {
+            name: 'Wasp Crackers',
+            category: 'Food',
+        },
+    ],
+    'cradle of civilization': [
+        {
+            name: 'Ancient India',
+            category: 'Cradle of Civilization',
+        },
+        {
+            name: 'The Fertile Crescent',
+            category: 'Cradle of Civilization',
+        },
+    ],
 };
 
 /**
@@ -82,13 +82,11 @@ food: [
  */
 function groupObjects(items) {
     const hashedCategories = {};
-for(let i = 0; i < items.length; i++) {
-    if(hashedCategories.hasOwnProperty(items[i].category.toLowerCase())) {
+    for (let i = 0; i < items.length; i++) {
+        if (!hashedCategories.hasOwnProperty(items[i].category.toLowerCase())) {
+            hashedCategories[items[i].category.toLowerCase()] = [];
+        }
         hashedCategories[items[i].category.toLowerCase()].push(items[i]);
     }
-    else {
-        hashedCategories[items[i].category.toLowerCase()] = [items[i]];
-    }
-}
-return hashedCategories;
+    return hashedCategories;
 }
