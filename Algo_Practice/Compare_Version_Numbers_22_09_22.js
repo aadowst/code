@@ -3,10 +3,10 @@ Given two strings, version1, and version2, both representing version numbers
 If version1 > version2 return 1; if version1 < version2 return -1; otherwise return 0.
 
 Helpful methods:
-  - .split(characterToSplitOn)
-    - returns an array of items: "a-b-c".split("-") returns ["a", "b", "c"]
-  - .parseInt
-    - given a string, converts it to and returns int or NaN (Not a Number) if conversion fails
+	- .split(characterToSplitOn)
+		- returns an array of items: "a-b-c".split("-") returns ["a", "b", "c"]
+	- .parseInt
+		- given a string, converts it to and returns int or NaN (Not a Number) if conversion fails
 
 Bonus, solve without .split
 */
@@ -49,15 +49,15 @@ function compareVersionNumbers(v1, v2) {
 	const v2Array = v2.split(".")
 
 	const minLength = Math.min(v1Array.length, v2Array.length)
-	for(let i = 0; i < minLength; i++){
+	for (let i = 0; i < minLength; i++) {
 		const v1Number = parseInt(v1Array[i])
 		const v2Number = parseInt(v2Array[i])
-		if(v1Number === v2Number) continue
+		if (v1Number === v2Number) continue
 		else if (v1Number < v2Number) return -1
 		else return 1
 	}
-	if(v1Array.length == v2Array.length) return 0
-	return v1Array.length < v2Array.length ? -1: 1
+	if (v1Array.length == v2Array.length) return 0
+	return v1Array.length < v2Array.length ? -1 : 1
 }
 
 console.log(compareVersionNumbers(test1V1, test1V2))

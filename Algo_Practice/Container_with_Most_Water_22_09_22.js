@@ -32,9 +32,9 @@ const expected4 = 2;
  */
 function containerWithMostWater(heights) {
 	let maxArea = 0;
-	for(let i = 0; i < heights.length; i++){
-		for (let j= i+1; j < heights.length; j++){
-			const length = j-i;
+	for (let i = 0; i < heights.length; i++) {
+		for (let j = i + 1; j < heights.length; j++) {
+			const length = j - i;
 			const height = Math.min(heights[i], heights[j]);
 			const currentArea = length * height
 			maxArea = Math.max(currentArea, maxArea)
