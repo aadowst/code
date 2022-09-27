@@ -34,7 +34,6 @@ function lengthOfLongestSubString(str) {
     const currentLetter = str[i]
     if(currentLetter in lettersSeen){
       currentLength = i - lettersSeen[currentLetter] - 1
-      delete lettersSeen[currentLetter]
     }
     lettersSeen[currentLetter] = i
     currentLength++
