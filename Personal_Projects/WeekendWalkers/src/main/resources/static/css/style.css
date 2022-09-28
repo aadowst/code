@@ -1,0 +1,19 @@
+.header{
+	color: rgb(86,152,163);
+	
+}
+h1{
+	color: black;
+}
+
+#login-btn{
+	font-color:red;
+}
+
+#nav-btn{
+	background-color: rgb(86,152,163);
+}
+
+#logo{
+border-radius: 100%;
+}
