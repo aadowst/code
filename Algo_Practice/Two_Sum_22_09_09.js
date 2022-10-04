@@ -40,6 +40,7 @@ function twoSumSpaceOptimized(nums, targetSum) {
 }
 
 
+// Saves numbers in the array as the keys in the object and their indexes as the values
 function twoSumTimeOptimized(nums, targetSum) {
     const indexesAtValues = {};
     for(let i = 0; i < nums.length; i++){

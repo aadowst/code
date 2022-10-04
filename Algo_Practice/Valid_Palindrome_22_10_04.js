@@ -1,5 +1,5 @@
 // From https://leetcode.com/problems/valid-palindrome/
-// Runtime: 171 ms(faster than 97.12%)
+// Runtime: 71 ms(faster than 97.12%)
 // Memory Usage: 47.1 MB (less than 34.94%)
 
 //wasn't faster than isAlphanumeric function below
