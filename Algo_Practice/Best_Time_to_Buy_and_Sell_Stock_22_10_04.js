@@ -1,6 +1,22 @@
 // From https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 
-// Comment this code is a lot cleaner than maxProfit (line 19), but performed worse
+var maxProfitSlidingWindonw = function(prices){
+	let maxProfit = 0;
+	let left = 0;
+	let right = 1
+	while(right < prices.length){
+		if(prices[left] < prices[right]){
+			profit = prices[right] - prices[left]
+			maxProfit = Math.max(maxProfit, profit)
+		}else{
+			left = right
+		}
+		right++
+	}
+	return maxProfit
+}
+
+// Comment this code is a lot cleaner than maxProfit (below), but performed worse
 // Runtime: 141 ms(faster than 45.07%)
 // Memory Usage: 52 MB (less than 15.54%)
 var maxProfitRevised = function(prices){
