@@ -1,5 +1,18 @@
 // From https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 
+// Comment this code is a lot cleaner than maxProfit (line 19), but performed worse
+// Runtime: 141 ms(faster than 45.07%)
+// Memory Usage: 52 MB (less than 15.54%)
+var maxProfitRevised = function(prices){
+	var lowestSeen = prices[0]
+	var profit = 0;
+	for(let i = 1; i < prices.length; i++){
+		lowestSeen = Math.min(lowestSeen, prices[i])
+		profit = Math.max(profit, prices[i]- lowestSeen)
+	}
+	return profit;
+}
+
 
 // Runtime: 95 ms(faster than 88.02%)
 // Memory Usage: 51.5 MB (less than 84.48%)
