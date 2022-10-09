@@ -64,7 +64,6 @@ var mergeTwoListsMutated = function (list1, list2) {
 			mergedList = runner1
 			runner1 = runner1.next
 		} else {
-			const temp = new ListNode(runner2.val)
 			mergedList.next = runner2
 			mergedList = runner2
 			runner2 = runner2.next
