@@ -17,7 +17,7 @@ var romanToInt = function(s) {
 		V: 5,
 		I: 1
 	}
-	let runningSum = characterValues[s[s.length - 1]];
+	let runningSum = 0;
 		let previousValue = 0
 		for(let i = s.length-1; i >= 0; i--){
 			const currentValue = characterValues[s[i]]
@@ -30,4 +30,4 @@ var romanToInt = function(s) {
 		return runningSum
 };
 
-romanToInt("III")
+console.log(romanToInt("I"))
