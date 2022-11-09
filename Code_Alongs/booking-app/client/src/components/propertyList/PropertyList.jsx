@@ -24,7 +24,7 @@ const PropertyList = () => {
             images.map((img, idx) => (
               <div className="pListItem" key={idx}>
                 <div className="pListTitles">
-                  <img className="pListImg" src={img} alt={data[idx].type} />
+                  <img className="pListImg" src={img} alt={data[idx]?.type} />
                   <h1>{data[idx]?.type}s</h1>
                   <h2>{data[idx]?.count} {data[idx]?.type}s</h2>
                 </div>

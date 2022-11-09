@@ -2,58 +2,44 @@ import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.css";
 
 const FeaturedProperties = () => {
-
+  const images = [
+    {
+      src: "https://cdn.pixabay.com/photo/2017/12/21/20/43/biltmore-house-3032522_960_720.jpg",
+    },
+    {
+      src: "https://cdn.pixabay.com/photo/2018/03/02/17/19/paris-3193674_960_720.jpg",
+    },
+    {
+      src: "https://cdn.pixabay.com/photo/2016/10/28/13/09/usa-1777986_960_720.jpg",
+    },
+  ];
   const { data, loading, error } = useFetch(
-    "http://localhost:8800/api/hotels/countByType"
+    "http://localhost:8800/api/hotels?featured=true&limit=4"
   );
   return (
     <div className="fp">
-
-      <div className="fpItem">
-        <img
-          src="https://cdn.pixabay.com/photo/2017/12/21/20/43/biltmore-house-3032522_960_720.jpg"
-          alt="Hotel Biltmore"
-          className="fpImg"
-        />
-        <span className="fpName">Hotel Biltmore</span>
-        <span className="fpCity">Asheville, NC</span>
-        <span className="fpPrice">Starting from $299</span>
-        <div className="fpRating">
-          <button>8.6</button>
-          <span>Very Good</span>
-        </div>
-      </div>
-
-      <div className="fpItem">
-        <img
-          src="https://cdn.pixabay.com/photo/2018/03/02/17/19/paris-3193674_960_720.jpg"
-          alt="Montmarte"
-          className="fpImg"
-        />
-        <span className="fpName">Montmarte</span>
-        <span className="fpCity">Paris, France</span>
-        <span className="fpPrice">Starting from $275</span>
-        <div className="fpRating">
-          <button>9.1</button>
-          <span>Excellent</span>
-        </div>
-      </div>
-
-			<div className="fpItem">
-        <img
-          src="https://cdn.pixabay.com/photo/2016/10/28/13/09/usa-1777986_960_720.jpg"
-          alt="Midtown Manhattan"
-          className="fpImg"
-        />
-        <span className="fpName">Midtown Manhattan</span>
-        <span className="fpCity">New York City, NY</span>
-        <span className="fpPrice">Starting from $329</span>
-        <div className="fpRating">
-          <button>8.9</button>
-          <span>Excellent</span>
-        </div>
-      </div>
-
+      {loading ? (
+        "Loading"
+      ) : (
+        <>
+          {data.map((item) => (
+            <div className="fpItem" key={item._id}>
+              <img
+                src={item.photos[0] || "https://cdn.pixabay.com/photo/2016/10/28/13/09/usa-1777986_960_720.jpg"}
+                alt={item.name}
+                className="fpImg"
+              />
+              <span className="fpName">{item.name}</span>
+              <span className="fpCity">{item.city}</span>
+              <span className="fpPrice">Starting from ${item.cheapestPrice}</span>
+              {item.rating && <div className="fpRating">
+                <button>{item.rating}</button>
+                <span>Very Good</span>
+              </div>}
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 };
