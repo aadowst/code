@@ -1,6 +1,5 @@
 import Room from "../models/Room.js";
-import Hotel from "../models/Room.js";
-import { createError } from "../utils/error.js";
+import Hotel from "../models/Hotel.js";
 
 export const createRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid;
@@ -15,7 +14,7 @@ export const createRoom = async (req, res, next) => {
     } catch {
       next(err);
     }
-		res.status(200).json(savedRoom)
+    res.status(200).json(savedRoom);
   } catch (err) {
     next(err);
   }
@@ -39,8 +38,8 @@ export const deleteRoom = async (req, res, next) => {
     await Room.findByIdAndDelete(req.params.id);
     res.status(200).json("Room has been deleted");
   } catch (err) {
-		next(err);
-	}
+    next(err);
+  }
 };
 
 export const getOneRoom = async (req, res, next) => {

@@ -12,9 +12,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import useFetch from "../../hooks/useFetch";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
+import Reserve from "../../components/reserve/Reserve";
 
 const Hotel = () => {
   const location = useLocation();
@@ -23,6 +25,8 @@ const Hotel = () => {
     `http://localhost:8800/api/hotels/find/${id}`
   );
   const { dates, options } = useContext(SearchContext);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   function dayDifference(date1, date2) {
@@ -33,6 +37,7 @@ const Hotel = () => {
 
   const days = dayDifference(dates[0].endDate, dates[0].startDate);
 
+  // code for slider
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const handleOpen = (idx) => {
@@ -45,6 +50,16 @@ const Hotel = () => {
     if (newSlideNumber < 0) newSlideNumber = data.photos.length - 1;
     if (newSlideNumber > data.photos.length - 1) newSlideNumber = 0;
     setSlideNumber(newSlideNumber);
+  };
+
+  // code for booking modal
+  const [openModal, setOpenModal] = useState(false);
+  const handleClick = () => {
+    if (user) {
+      setOpenModal(true);
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -82,7 +97,9 @@ const Hotel = () => {
             </div>
           )}
           <div className="hotelWrapper">
-            <button className="bookNow">Reserve Now!</button>
+            <button className="bookNow" onClick={handleClick}>
+              Reserve Now!
+            </button>
             <h1 className="hotelTitle">{data.name}</h1>
             <div className="hotelAddress">
               <FontAwesomeIcon icon={faLocationDot} />
@@ -120,9 +137,10 @@ const Hotel = () => {
                   Can you believe this hotel has a location score of 9.8?
                 </span>
                 <h2>
-                  <b>${days * data.cheapestPrice * options.room}</b> ({days} nights)
+                  <b>${days * data.cheapestPrice * options.room}</b> ({days}{" "}
+                  nights)
                 </h2>
-                <button>Reserve Now!</button>
+                <button onClick={handleClick}>Reserve Now!</button>
               </div>
             </div>
           </div>
@@ -130,6 +148,7 @@ const Hotel = () => {
           <Footer />
         </div>
       )}
+      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
     </>
   );
 };

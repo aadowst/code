@@ -17,8 +17,10 @@ import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const Header = ({ type }) => {
+  const { user } = useContext(AuthContext);
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [dates, setDates] = useState([
@@ -89,7 +91,7 @@ const Header = ({ type }) => {
               You've come to the right place if you want great adventures at an
               affordable price!
             </p>
-            <button className="headerBtn">Sign In / Register</button>
+            {!user && <button className="headerBtn">Sign In / Register</button>}
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
