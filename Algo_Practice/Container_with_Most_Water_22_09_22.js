@@ -1,3 +1,27 @@
+// Comment:  added two pointer solution (instead of nested loops)
+// Runtime: 131 ms, faster than 48.48% of JavaScript online submissions for Container With Most Water.
+// Memory Usage: 49.7 MB, less than 48.03% of JavaScript online submissions for Container With Most Water.
+
+var maxArea = function(height) {
+	let maxArea = 0;
+	let leftPointer = 0;
+	let rightPointer = height.length - 1
+	while(leftPointer < rightPointer){
+			const currentHeight = Math.min(height[leftPointer], height[rightPointer])
+			const currentWidth = rightPointer - leftPointer
+			const currentArea = currentHeight * currentWidth
+			maxArea = Math.max(maxArea, currentArea)
+			if(height[leftPointer] < height[rightPointer]) leftPointer ++
+			else if (height[leftPointer] === height[rightPointer]) {
+					leftPointer++;
+					rightPointer--;
+			}
+			else rightPointer--
+	}
+	return maxArea
+};
+
+
 /* 
 Finds the container that can hold the most water based on it's area.
 A container's length is the distance between indexes and the two sides are
