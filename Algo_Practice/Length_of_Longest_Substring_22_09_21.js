@@ -1,46 +1,24 @@
-/* 
-  Given a string, find the length of the longest substring without repeating characters.
-*/
+// from:  https://leetcode.com/problems/longest-substring-without-repeating-characters
+// Runtime: 136 ms, faster than 74.16% of JavaScript online submissions for Longest Substring Without Repeating Characters.
+// Memory Usage: 47.4 MB, less than 60.84% of JavaScript online submissions for Longest Substring Without Repeating Characters.
 
-const str1 = 'abcabcbb';
-const expected1 = 3;
-// Explanation: The answer is "abc", with the length of 3.
-
-const str2 = 'bbbbb';
-const expected2 = 1;
-// Explanation: The answer is "b", with the length of 1.
-
-const str3 = 'pwwkew';
-const expected3 = 3;
-/* Explanation: The answer is "wke", with the length of 3. 
-  Note that the answer must be a substring, "pwke" is a subsequence and not a substring. */
-
-const str4 = 'dvadf';
-const expected4 = 4;
-// Explanation: "vadf"
-
-/**
- * Determines the length of the longest substring in the given str.
- * @param {string} str
- * @returns {number} Length of the longest substring from the given str.
- * - Time: O(?).
- * - Space: O(?).
- */
-function lengthOfLongestSubString(str) {
+var lengthOfLongestSubstring = function(str) {
   let maxLength = 0;
   let currentLength = 0;
   const lettersSeen = {};
-  for(let i = 0; i < str.length; i++){
-    const currentLetter = str[i]
+  let leftPointer = 0;
+  let rightPointer = 0
+  while(rightPointer < str.length){
+    const currentLetter = str[rightPointer]
     if(currentLetter in lettersSeen){
-      currentLength = i - lettersSeen[currentLetter] - 1
+      // only move leftPointer if the repeated letter is to its right
+      leftPointer = Math.max(leftPointer, lettersSeen[currentLetter] + 1)
     }
-    lettersSeen[currentLetter] = i
-    currentLength++
-    if(currentLength > maxLength) maxLength = currentLength
+    lettersSeen[currentLetter] = rightPointer
+    currentLength = rightPointer-leftPointer + 1
+    maxLength = Math.max(maxLength, currentLength)
+    rightPointer++
   }
-
   return maxLength;
 }
-
-console.log(lengthOfLongestSubString(str4))
+console.log(lengthOfLongestSubstring("tmmzuxt"))
