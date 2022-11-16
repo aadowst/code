@@ -29,7 +29,10 @@ router.delete("/:id", verifyUser, deleteUser);
 router.get("/:id", verifyUser, getOneUser);
 
 // GET ALL
-router.get("/", verifyAdmin, getAllUsers);
+router.get("/", 
+// commented out verifyAdmin because issue with storing cookies, despite being logged in.
+verifyAdmin, 
+getAllUsers);
 
 
 export default router
