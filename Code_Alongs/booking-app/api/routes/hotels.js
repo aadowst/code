@@ -20,7 +20,9 @@ router.post("/", verifyAdmin, createHotel);
 router.put("/find/:id", verifyAdmin, updateHotel);
 
 // DELETE
-router.delete("/find/:id", verifyAdmin, deleteHotel);
+router.delete("/find/:id", 
+// verifyAdmin, 
+deleteHotel);
 
 // GET
 router.get("/find/:id", getOneHotel);
