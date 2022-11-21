@@ -13,6 +13,7 @@ const Datatable = ({columns, title}) => {
   );
   const [list, setList] = useState([]);
 
+
   useEffect(() => {
     setList(data);
   }, [data]);
@@ -50,14 +51,14 @@ const Datatable = ({columns, title}) => {
       },
     },
   ];
-  return (
+  return (<> 
     <div className="datatable">
       <div className="datatableTitle">
         Manage {path}
-        <Link to="/users/new" className="link">
+        <Link to={`new`} className="link">
           Add New
         </Link>
-      </div>
+      </div>{loading? "loading" : 
       <DataGrid
         className="datagrid"
         rows={list}
@@ -66,8 +67,9 @@ const Datatable = ({columns, title}) => {
         rowsPerPageOptions={[9]}
         checkboxSelection
         getRowId={(row) => row._id}
-      />
+      />}
     </div>
+    </>
   );
 };
 
