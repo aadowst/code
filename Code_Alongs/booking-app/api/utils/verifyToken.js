@@ -26,13 +26,13 @@ export const verifyUser = (req, res, next) => {
 	})
 }
 
+
 export const verifyAdmin = (req, res, next) => {
-	console.log(req.cookies.access_token)
-	verifyToken(req, res, next, ()=>{
-		if(req.user.isAdmin){
-			next()
-		} else {
-			return next(createError(403, "Token is not valid"));
-		}
-	})
-}
+  verifyToken(req, res, () => {
+    if (req.user.isAdmin) {
+      next();
+    } else {
+      return next(createError(403, "You are not authorized!"));
+    }
+  });
+};
