@@ -1,5 +1,25 @@
 // from:  https://leetcode.com/problems/search-a-2d-matrix/
 
+// Comment:  best solution so far
+// Runtime: 111 ms, faster than 16.60% of JavaScript online submissions for Search a 2D Matrix.
+// Memory Usage: 42.1 MB, less than 66.63% of JavaScript online submissions for Search a 2D Matrix.
+var searchMatrixDiagonalSearch = function (matrix, target) {
+  let height = matrix.length;
+  let width = matrix[0].length;
+  if (target < matrix[0][0] || target > matrix[height - 1][width - 1]) {
+    return false;
+  }
+	let row = 0;
+	let column = width -1
+	while(row < height && column >= 0){
+		if(matrix[row][column] === target) return true
+		else if(matrix[row][column] < target) row++
+		else column--
+	}
+
+	return false
+};
+
 // Comment:  slower and less elegant than original solution. Strategy was to first find the row the target might be in and then search for the column
 // Runtime: 120 ms, faster than 7.22% of JavaScript online submissions for Search a 2D Matrix.
 // Memory Usage: 42.3 MB, less than 34.22% of JavaScript online submissions for Search a 2D Matrix.
@@ -11,24 +31,23 @@ var searchMatrix = function (matrix, target) {
 
   let top = 0;
   let bottom = height - 1;
-    let row= Math.floor((top + bottom) / 2);
+  let row = Math.floor((top + bottom) / 2);
   while (top <= bottom) {
     row = Math.floor((top + bottom) / 2);
     const leftValue = matrix[row][0];
-		const rightValue = matrix[row][width - 1]
+    const rightValue = matrix[row][width - 1];
     if (target === leftValue || target === rightValue) return true;
     else if (target < leftValue) {
       bottom = row - 1;
-    } else if(target > rightValue){
+    } else if (target > rightValue) {
       top = row + 1;
-			
-    }else break
+    } else break;
   }
 
-	let left = 0
-	let right = width - 1
-	while(left <= right){
-		const mid = Math.floor((left + right) / 2);
+  let left = 0;
+  let right = width - 1;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
     const value = matrix[row][mid];
     if (target === value) return true;
     else if (target < value) {
@@ -36,7 +55,7 @@ var searchMatrix = function (matrix, target) {
     } else {
       left = mid + 1;
     }
-	}
+  }
 
   return false;
 };
@@ -48,7 +67,7 @@ var searchMatrix = function (matrix, target) {
 var searchMatrixWithHelper = function (matrix, target) {
   let height = matrix.length;
   let width = matrix[0].length;
-	// check to see if target is out of bounds
+  // check to see if target is out of bounds
   if (target < matrix[0][0] || target > matrix[height - 1][width - 1])
     return false;
   let leftPointerPos = 0;
@@ -74,12 +93,4 @@ var searchMatrixWithHelper = function (matrix, target) {
   }
 };
 
-console.log(
-  searchMatrix(
-    [
-      [1],
-      [3]
-		],
-    2
-  )
-);
+console.log(searchMatrix([[1], [3]], 2));
