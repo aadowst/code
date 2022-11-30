@@ -1,9 +1,30 @@
 // from:https://leetcode.com/problems/search-in-rotated-sorted-array/
 
+// comment:  eliminated helper function and used more if-else conditionals (vs. repeated ifs)
+// Runtime: 86 ms, faster than 71.40% of JavaScript online submissions for Search in Rotated Sorted Array.
+// Memory Usage: 41.7 MB, less than 90.14% of JavaScript online submissions for Search in Rotated Sorted Array.
+var search = function (nums, target){
+  let left = 0;
+  let right = nums.length - 1;
+  let mid;
+  while (left <= right) {
+    mid = Math.floor((left + right) / 2);
+		if(nums[mid] === target) return mid
+		if(nums[left] <= nums[mid]){ //left half is sorted
+			if(nums[left] <= target && target < nums[mid]) right = mid - 1 //target is in left half
+			else left = mid + 1 //target might be in right half (or out of range to the left)
+		} else{
+			if(nums[mid] < target && target <= nums[right]) left = mid + 1 //target in range of right half
+			else right = mid -1 // target mght be in the left half (or out of range to the right)
+		}
+	}
+	return -1
+}
+
 // Comment:  much cleaner, but not faster (surprisingly)
 // Runtime: 102 ms, faster than 38.29% of JavaScript online submissions for Search in Rotated Sorted Array.
 // Memory Usage: 41.8 MB, less than 90.14% of JavaScript online submissions for Search in Rotated Sorted Array.
-var search = function (nums, target) {
+var searchWithBinaryHelper = function (nums, target) {
   let left = 0;
   let right = nums.length - 1;
   let mid;
