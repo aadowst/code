@@ -1,9 +1,36 @@
 // from:  https://leetcode.com/problems/reorder-list/
 
+// Runtime:  198 ms (beats 15.37%)
+// Memory:  55 MB (beats 5.31%)
+var reorderListStackRefactored = function (head) {
+  let node = head.next;
+  let stack = [];
+  while (node) {
+    stack.push(node);
+    node = node.next;
+  }
+  node = head;
+  const mid = Math.floor((stack.length -1)/2)
+  for(let i = 1; i <=mid; i++){
+    const front = i
+    const back = stack.length -i
+    backNode = stack[back]
+    node.next = backNode;
+    backNode.next = null
+    node = backNode
+    if(front !== back){
+      frontNode = stack[front]
+      node.next= frontNode
+      frontNode.next = null
+      node = frontNode
+    }
+  }
+};
+
 // Comment: using a stack to reorder the nodes. It is simpler and much better with memory, but only a tiny bit faster (probably due to all the shifting)
 // Runtime: 215 ms, faster than 11.35% of JavaScript on. line submissions for Reorder List.
 // Memory Usage: 49.9 MB, less than 74.86% of JavaScript online submissions for Reorder List.
-var reorderList = function (head) {
+var reorderListStackOriginal = function (head) {
   let node = head.next;
   let stack = [];
   while (node) {
