@@ -31,4 +31,3 @@ Ideally, only open project directory in VScode
 ```
 
 5. Back in the Run and Debug panel, click "Launch Program" or type F5
-
