@@ -1,5 +1,44 @@
 // from:  https://leetcode.com/problems/reorder-list/
 
+// Comment:  much better performance!
+// Runtime:  165 ms (beats 42.64%)
+// Memory:  49.7 MB (beats 85.83%)
+var reorderList = function (head) {
+  let slow = head;
+  let fast = head.next;
+  //find middle of list (slow is at middle when fast reaches end)
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+
+  let prev = null;
+  let next;
+  let node = slow.next;
+  //   slow will become the next of the reordered list, so its .next should be null
+  slow.next = null;
+
+  // reverse second half of list
+  while (node) {
+    next = node.next;
+    node.next = prev;
+    prev = node;
+    node = next;
+  }
+  // head is the start of the first half of the list and prev is the start of the reveresed back half of the list
+  let nodeLeft = head;
+  let nodeRight = prev;
+  while (nodeRight) {
+    let tempLeft = nodeLeft.next;
+    nodeLeft.next = nodeRight;
+    nodeLeft = tempLeft;
+
+    let tempRight = nodeRight.next;
+    nodeRight.next = nodeLeft;
+    nodeRight = tempRight;
+  }
+};
+
 // Runtime:  198 ms (beats 15.37%)
 // Memory:  55 MB (beats 5.31%)
 var reorderListStackRefactored = function (head) {
@@ -10,19 +49,19 @@ var reorderListStackRefactored = function (head) {
     node = node.next;
   }
   node = head;
-  const mid = Math.floor((stack.length -1)/2)
-  for(let i = 1; i <=mid; i++){
-    const front = i
-    const back = stack.length -i
-    backNode = stack[back]
+  const mid = Math.floor((stack.length - 1) / 2);
+  for (let i = 1; i <= mid; i++) {
+    const front = i;
+    const back = stack.length - i;
+    backNode = stack[back];
     node.next = backNode;
-    backNode.next = null
-    node = backNode
-    if(front !== back){
-      frontNode = stack[front]
-      node.next= frontNode
-      frontNode.next = null
-      node = frontNode
+    backNode.next = null;
+    node = backNode;
+    if (front !== back) {
+      frontNode = stack[front];
+      node.next = frontNode;
+      frontNode.next = null;
+      node = frontNode;
     }
   }
 };
@@ -46,11 +85,11 @@ var reorderListStackOriginal = function (head) {
     frontNode.next = null;
     node = frontNode;
   }
-	if(stack.length ===1){
-		let lastNode = stack.pop();
-		node.next = lastNode
-		lastNode.next = null
-	}
+  if (stack.length === 1) {
+    let lastNode = stack.pop();
+    node.next = lastNode;
+    lastNode.next = null;
+  }
 };
 
 // Comment:  not surprisingly slow
