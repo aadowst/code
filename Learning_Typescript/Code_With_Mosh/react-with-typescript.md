@@ -105,5 +105,7 @@ _Handling Events_
 When passing onClick or other callbacks as props, make sure to adjust the shape of the ComponentNameProps interface
 Otherwise, there is no difference
 
-_Building a Form_
+_Form_
 
+Building a form is the same
+However, a onSubmit handler, which takes in the event, needs the type React.FormEvent in its paramater
