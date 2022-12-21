@@ -1,7 +1,7 @@
 // from https://leetcode.com/problems/validate-binary-search-tree/
 
-// Runtime:  105 ms (beats 65.63%)
-// Memory Usage:  45.9 MB (beats 61.16%)
+// Runtime:  80 ms (beats 81.76%)
+// Memory Usage:  45.8 MB (beats 91.27%)
 
 /**
  * Definition for a binary tree node.
@@ -15,29 +15,24 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isValidBST = function (root) {
-  if (!root) return true;
+var isValidBST = function (
+  node,
+  minValue = Number.NEGATIVE_INFINITY,
+  maxValue = Number.POSITIVE_INFINITY
+) {
+  if (!node) return true;
 
-  let minValue = Number.NEGATIVE_INFINITY;
-  let maxValue = Number.POSITIVE_INFINITY;
+  const nodeIsValid = minValue < node.val && node.val < maxValue;
+  const leftIsValid = isValidBST(
+    node.left,
+    minValue,
+    Math.min(maxValue, node.val)
+  );
+  const rightIsValid = isValidBST(
+    node.right,
+    Math.min(maxValue, node.val),
+    maxValue
+  );
 
-  return (BSTisValid = isValidBSTRecursive(root, minValue, maxValue));
-
-  function isValidBSTRecursive(node, minValue, maxValue) {
-    if (!node) return true;
-
-    const nodeIsValid = minValue < node.val && node.val < maxValue;
-    const leftIsValid = isValidBSTRecursive(
-      node.left,
-      minValue,
-      Math.min(maxValue, node.val)
-    );
-    const rightIsValid = isValidBSTRecursive(
-      node.right,
-      Math.min(maxValue, node.val),
-      maxValue
-    );
-
-    return nodeIsValid && leftIsValid && rightIsValid;
-  }
+  return nodeIsValid && leftIsValid && rightIsValid;
 };
