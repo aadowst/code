@@ -85,7 +85,7 @@ const shallowCopy2 = {...person, name: "Ad", numFingers: 10}
 const deepCopy = {
 	...person,
 	name: "Adrian D.",
-	address = {
+	address: {
 		...person.address,
 		country: "United States"
 	}
@@ -139,3 +139,14 @@ to install:  npm i immer
 in index.js, import { produce } from immer
 produce takes two arguments:  the original object and an arrow function that show the changes that will be made to its copy
 
+```js
+function publish(book) {
+  return produce(book, newBook => {
+		newBook.isPublished = true;
+	})
+}
+
+let newBook = publish(book);
+console.log(book);
+console.log(newBook);
+```
