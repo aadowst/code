@@ -1,12 +1,13 @@
-import { produce } from 'immer'
-let book = { title: "Harry Potter" };
+import store from './store.js'
+import {bugAdded, bugRemoved, bugResolved} from './actions'
 
-function publish(book) {
-  return produce(book, newBook => {
-		newBook.isPublished = true;
-	})
-}
+const unsubscribe = store.subscribe(() => {
+	console.log("store changed!", store.getState())
+})
 
-let newBook = publish(book);
-console.log(book);
-console.log(newBook);
+store.dispatch(bugAdded("bug1"))
+
+// unsubscribe()
+
+store.dispatch(bugResolved(1))
+console.log(store.getState())
