@@ -48,7 +48,7 @@ var subsetsWithDupDFS = function(nums) {
 					let string = subset.toString()
 					if(added.has(string)) return
 					added.add(string)
-					subsets.push([...subset])
+					subsets.push([...subset])  // subset.slice() could also be used, since it creates a shallow copy of the array and is a tiny bit faster
 					return
 			}
 
