@@ -1,14 +1,20 @@
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
 let lastId = 0;
 
 const slice = createSlice({
   name: "bugs",
   initialState: [],
   reducers: {
+		bugAssignedToUser: (bugs, action) => {
+			const index = bugs.findIndex((bug) => bug.id === action.payload.bugId)
+			bugs[index].assignedTo = action.payload.userId
+		},
     bugAdded: (bugs, action) => {
       bugs.push({
         id: ++lastId,
         description: action.payload.description,
+				assignedTo: undefined,
         resolved: false,
       });
     },
@@ -19,8 +25,19 @@ const slice = createSlice({
   },
 });
 
-export const { bugAdded, bugResolved } = slice.actions;
+export const { bugAdded, bugResolved, bugAssignedToUser } = slice.actions;
 export default slice.reducer;
+
+export const getUnresolvedBugs = createSelector(
+		state => state.entities.bugs,
+		bugs => bugs.filter(bug => !bug.resolved)
+	)
+
+export const getBugsAssignedTo = userId => createSelector(
+	state => state.entities.bugs,
+	bugs => bugs.filter(bug => bug.assignedTo === userId)
+)
+//export const getBugsAssignedTo = (bugs, worker) => bugs.filter(bug => bug.assignedTo === worker)
 
 // Code before createSlice is used
 
