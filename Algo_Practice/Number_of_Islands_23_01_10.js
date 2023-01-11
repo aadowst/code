@@ -6,7 +6,7 @@
 // Memory Usage:  44.9 MB (beats 71.95%)
 // Comment:  mutates grid by marking visited land as water
 
-var numIslands = function (grid) {
+var numIslandsMutates = function (grid) {
   let islandCount = 0;
   //const visited = [...Array(grid.length).fill(Array(grid[0].length).fill(false))]  got weird glitches with this
 
@@ -49,16 +49,19 @@ var numIslands = function (grid) {
 
 var numIslands = function (grid) {
   let islandCount = 0;
-  //const visited = [...Array(grid.length).fill(Array(grid[0].length).fill(false))]  got weird glitches with this
+	const row = Array(grid[0].length).fill(false)
+  const visited = [...Array(grid.length).fill([
+    ...row
+  ])]; // got weird glitches with this
 
-  let visited = [];
-  for (let row = 0; row < grid.length; row++) {
-    const row = [];
-    for (let column = 0; column < grid[0].length; column++) {
-      row.push(false);
-    }
-    visited.push(row);
-  }
+  // let visited = [];
+  // for (let row = 0; row < grid.length; row++) {
+  //   const row = [];
+  //   for (let column = 0; column < grid[0].length; column++) {
+  //     row.push(false);
+  //   }
+  //   visited.push(row);
+  // }
   for (let row = 0; row < grid.length; row++) {
     for (let column = 0; column < grid[0].length; column++) {
       if (!visited[row][column] && grid[row][column] == 1) {
@@ -92,36 +95,34 @@ var numIslands = function (grid) {
  * @param {character[][]} grid
  * @return {number}
  */
-var numIslandsSet = function(grid) {
-	let islandCount = 0
-		let visited = new Set()
+var numIslandsSet = function (grid) {
+  let islandCount = 0;
+  let visited = new Set();
 
+  for (let row = 0; row < grid.length; row++) {
+    for (let column = 0; column < grid[0].length; column++) {
+      const string = `${row},${column}`;
+      if (!visited.has(string) && grid[row][column] == 1) {
+        islandCount++;
+        exploreIsland(row, column);
+      }
+    }
+  }
 
-
-	for(let row = 0; row < grid.length; row++){
-			for (let column = 0; column < grid[0].length; column++){
-					const string = `${row},${column}`
-					if(!visited.has(string) && grid[row][column] == 1){
-
-					islandCount++
-					exploreIsland(row, column)
-					}
-					
-			}
-	}
-
-	function exploreIsland(row, column){
-			if(row < 0 || row >= grid.length || column < 0 || column >= grid[0].length ) return  //check to see if it is out of bounds
-			const string = `${row},${column}`
-			if(visited.has(string)) return //already explored
-			if(grid[row][column] == 0) return  //only continue exploring if it is land
-
-			visited.add(string)
-			exploreIsland(row + 1, column)
-			exploreIsland(row - 1, column)
-			exploreIsland(row, column + 1)
-			exploreIsland(row, column - 1)
-	}
-
-	return islandCount
+  function exploreIsland(row, column) {
+    if (row < 0 || row >= grid.length || column < 0 || column >= grid[0].length)
+      return; //check to see if it is out of bounds
+    const string = `${row},${column}`;
+    if (visited.has(string)) return; //already explored
+    if (grid[row][column] == 0) return; //only continue exploring if it is land
+    visited.add(string);
+    exploreIsland(row + 1, column);
+    exploreIsland(row - 1, column);
+    exploreIsland(row, column + 1);
+    exploreIsland(row, column - 1);
+  }
+  return islandCount;
 };
+
+const grid1 = [["0","1","0"],["1","0","1"],["0","1","0"]]
+numIslands(grid1)
