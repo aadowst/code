@@ -1,21 +1,11 @@
 import configureStore from "./store/configureStore.js";
-import {
-  getUnresolvedBugs,
-  bugAdded,
-  bugResolved,
-  getBugsAssignedTo,
-  bugAssignedToUser,
-} from "./store/bugs";
-import * as projectActions from "./store/projects";
+import { } from "./store/bugs";
 import { userAdded } from "./store/users.js";
+import * as actions from './store/api'
 
 const store = configureStore();
+// UI Layer
 
-store.dispatch(( dispatch, getState ) => {
-  // Call an API
-  // If promise is resolved
-  dispatch({type: 'bugsReceived', bugs: [1,2,3]})
-  console.log(getState())
-})
+store.dispatch(loadBugs())
 
-store.dispatch({type: "error", payload: { message: "an error has occured"}})
+setTimeout(( ) => store.dispatch(assignBugToUser(1,4)),2000)

@@ -105,7 +105,7 @@ const numbers = [1,2,4]
 // Adding
 const addedAtEnd = [...numbers, 5]
 const index = numbers.indexOf(2) + 1  //to add after the 2. to add before the 2, omit the +1
-const addedInMiddle = [...numbers.slice(0,), 3, ...numbers.slice(index)]
+const addedInMiddle = [...numbers.slice(0,index), 3, ...numbers.slice(index)]
 // Removing
 const removingOdds = numbers.filter(n => n%2 === 0)
 // Updating
