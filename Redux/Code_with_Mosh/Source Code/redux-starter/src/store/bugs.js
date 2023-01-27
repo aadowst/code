@@ -45,7 +45,7 @@ export const loadBugs = () => (dispatch, getState) => {
   const {lastFetch} = getState().entities.bugs;
   const diffInMinutes = moment().diff(moment(lastFetch), 'minutes')  // compare the current momement with the the last fetch and return difference in minutes
   if(diffInMinutes < 10) return
-  dispatch(apiCallBegan({
+  return dispatch(apiCallBegan({
     url,  // could be stored in a config file, 
     onStart: bugsRequested.type,
     onSuccess: bugsReceived.type,
@@ -86,7 +86,7 @@ export const resolveBug = (id) => apiCallBegan({
 
 export const getUnresolvedBugs = createSelector(
 		state => state.entities.bugs,
-		bugs => bugs.filter(bug => !bug.resolved)
+		bugs => bugs.list.filter(bug => !bug.resolved)
 	)
 
 export const getBugsAssignedTo = userId => createSelector(
