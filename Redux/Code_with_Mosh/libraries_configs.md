@@ -21,3 +21,9 @@ If local installation, check package.json and ensure the scripts object contains
 
 Additional Commands:
 To setup jest to watch for changes in source code and automatically run when it detects them, in the terminal:  jest --watch
+
+*Integration with React*
+
+create react app:  npx create-react-app DIRECTORY_NAME
+install redux & dependencies:  npm i redux @reduxjs/toolkit axios moment
+install react-redux:  npm i react-redux (Mosh used @7.2)
