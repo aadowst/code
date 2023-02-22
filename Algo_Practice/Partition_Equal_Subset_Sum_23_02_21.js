@@ -1,5 +1,34 @@
 // https://leetcode.com/problems/partition-equal-subset-sum/
 
+// Runtime:  172 ms (beats 80.98%)
+// Memory:  48.3 MB (beats 68.54%)
+// Comment:  improved by providing early exit for positive sums and only adding values to set if they are less than or equal to target
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var canPartitionImproved = function(nums) {
+	const total = nums.reduce((previous, current) => previous + current)
+	if(total % 2 === 1) return false
+	const target = total/2
+	const possibleTotals = new Set()
+	possibleTotals.add(0)
+
+	for(const num of nums){
+			const newValues = []
+			possibleTotals.forEach(value => newValues.push(value + num) )
+			while(newValues.length > 0){
+					const newValue = newValues.pop()
+					if(newValue <= target) possibleTotals.add(newValue)
+			}
+			if(possibleTotals.has(target)) return true
+	}
+
+	return false
+};
+
+
+
 // Runtime:  442 ms (beats 39.36%)
 // Memory Usage:  60 MB (beats 47.85%)
 // Strategy:  uses a set object to keep track of all possible totals that could be seen in a brute-force approach. 
