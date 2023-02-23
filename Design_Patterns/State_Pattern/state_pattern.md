@@ -8,4 +8,4 @@ In Gang of Four book and another sources, the following terms are used:
 	State:  the abstract parent class, which has a handle method
 	ConcreteStateA, ConcreteStateB, etc:  the child classes that implement the State class (each with its own handle method)
 
-Abusing the state pattern
+Abusing the state pattern:  it's ok to have classes handle their state, if there aren't too many options (e.g. just on/off for one object). Forcing a state pattern in simple situations can make code unneccessarily complex
