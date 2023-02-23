@@ -65,3 +65,9 @@ Relationships:
 Inheritance/extension:  An arrow goes from a child class from a parent class (arrow head should be empty)
 Composition: indicated with an arrow with a diamond on the back end (the class with a diamond is composed of the class pointed to by the arrow) (e.g. the car class is composed of the wheel class, since cars have 4 wheels)
 Dependency:  a dashed arrow goes from a class to another class that it refers to/depends on
+
+Open-Close-Principle
+Classes should be open for extension, but closed for modification. That way there aren't breaking side effects in dependencies of the edited class.
+
+Abusing Patterns: forcing existing code to fit a pattern w/o for the sake of using the pattern. Instead, patterns should be chosen based on the problems they solve. If there isn't a problem with the existing code, then it shouldn't be fixed
+
