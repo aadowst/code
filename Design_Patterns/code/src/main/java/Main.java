@@ -1,5 +1,4 @@
 import com.aadowst.strategy.BWFilter;
-import com.aadowst.strategy.Compressor;
 import com.aadowst.strategy.HighContrastFilter;
 import com.aadowst.strategy.ImageStorage;
 import com.aadowst.strategy.ImageStorageAlternative;
