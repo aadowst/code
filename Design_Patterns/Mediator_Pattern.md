@@ -60,6 +60,7 @@ public class ArticlesDialogBox {
 			articleSelected();
 			System.out.println("Article Selected:  " + articlesListBox.getContent())
 		});
+		// other Lambda functions follow
 	}
 
 	// more code here
@@ -75,6 +76,7 @@ public class ArticlesDialogBox {
 
 		public ArticlesDialogBox() {
 		articlesListBox.attach(() -> articleSelected()); 
+		// other Lambda functions follow
 		}
 
 	// more code here
@@ -93,6 +95,8 @@ public class ArticlesDialogBox {
 
 		public ArticlesDialogBox() {
 		articlesListBox.attach(this::articleSelected); 
+		titleTextBox.addEventHandler(this::titleChanged);
+		saveButton.addEventHandler(this::saveClicked);
 		}
 
 	// more code here
