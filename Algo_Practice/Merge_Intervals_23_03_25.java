@@ -1,11 +1,28 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
-// Runtime:  9 ms (beats 52.25%)
-// Memory:  47.4 MB (beats 52.58%)
+
 
 public class Merge_Intervals_23_03_25 {
-	public int[][] merge(int[][] intervals) {
+	// Runtime:  9 ms (beats 52.25%)
+	// Memory:  47.8 MB (beats 14.31%)
+	public int[][] mergeLinkedList(int[][] intervals){
+		LinkedList<int[]> answer = new LinkedList<>();
+		Arrays.sort(intervals, (a,b) -> a[0] - b[0]);
+		for (int[] current : intervals){
+			if(answer.isEmpty() || answer.getLast()[1] < current[0])
+			answer.add(current);
+			else
+			answer.getLast()[1] = Math.max(answer.getLast()[1], current[1]);
+		}
+		return answer.toArray(new int[0][]);
+	}
+	
+
+	// Runtime:  9 ms (beats 52.25%)
+	// Memory:  47.4 MB (beats 52.58%)
+	public int[][] mergeArrayList(int[][] intervals) {
 		ArrayList<int[]> answer = new ArrayList<>();
 		Arrays.sort(intervals, (a,b) -> a[0] - b[0]);
 		int start = intervals[0][0];
